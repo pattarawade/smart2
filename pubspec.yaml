@@ -1,0 +1,70 @@
+name: connectfirebase
+description: A new Flutter project.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+  
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^0.1.2
+  firebase_auth: ^0.14.0+5
+  firebase_database: ^3.0.7
+  firebase_core: ^0.4.0 
+  cloud_firestore: ^0.12.9
+  google_sign_in: ^4.0.4
+  rflutter_alert: ^1.0.3      
+
+  flutter_animation_progress_bar: ^1.0.0
+  wave_progress_widget: ^0.0.1
+  flutter_icons: ^1.1.0
+  marquee: ^1.3.1
+  
+  # intl: "^0.15.2"
+  http: ^0.12.1
+  web_socket_channel: ^1.1.0
+  gesture_zoom_box: ^0.0.2
+  save_in_gallery: ^0.1.3
+  flutter_speed_dial: ^1.2.4
+  intl: ^0.16.0
+  fluttertoast: ^3.1.3
+ 
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  assets:
+  - images/logo1.png
+  - images/logo.png
+  - images/weed.png
+  - images/hum.png
+  - images/tem.png
+  - images/water.png
+  - images/stb.png
+  - images/carrot.png
+  - images/broccoli.png
+  - images/kale.png
+  - images/lettuce.png
+  - images/cauliflower.png
+  - images/farm.jpg
+  - images/farm2.jpg
