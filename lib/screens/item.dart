@@ -7,8 +7,7 @@ import '../screens/item/itemform.dart';
 
 import 'package:firebase_database/firebase_database.dart';
 
-final DatabaseReference itemRef =
- FirebaseDatabase.instance.reference().child("item");
+final DatabaseReference itemRef = FirebaseDatabase.instance.reference().child("item");
     // FirebaseDatabase.instance.reference().child("item");
     /////********************************************************* */
 
@@ -45,6 +44,7 @@ class ItemState extends State<ItemScreen> {
       }
     });
 
+
     if(noOfSelectedItems > 0) {
         appBar = getSelectionAppBar();
     } else {
@@ -66,7 +66,6 @@ class ItemState extends State<ItemScreen> {
         ],
       );
   }
-
   void _onPressedDelete() {
     showDialog(
       context: context,
@@ -107,11 +106,12 @@ class ItemState extends State<ItemScreen> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
     return ItemInheritedWidget(
       noOfSelectedItems : noOfSelectedItems,
-      onPress : onPress,
+       onPress : onPress,  //////////////////////////////////////////////////////////////////////////////
       appBar : appBar,
       child : ItemListStateful(),
     );
@@ -184,6 +184,7 @@ class ItemList extends State<ItemListStateful> {
     });
   }
 
+
   Future _openAddDialog() async {
     Item item = await Navigator.of(context).push(new MaterialPageRoute<Item>(
         builder: (BuildContext context) {
@@ -209,9 +210,6 @@ class ItemList extends State<ItemListStateful> {
         child: new Icon(Icons.add),
       );
     }
-    
-    
-
     Scaffold scaffold = new Scaffold(
           // drawer: drawer,
           appBar: appBar,
@@ -252,13 +250,12 @@ class ItemCard extends State<ItemCardStateful> {
       _openEditDialog(context, this.item);
     }
   }
-
-
   void _onLongPress(BuildContext context) {
     final ItemInheritedWidget inheritedWidget = ItemInheritedWidget.of(context);
     this.selected = !this.selected;
     int selectedItems = inheritedWidget.onPress(this.selected, this.item);
     print("Long press " + selectedItems.toString());
+  
   }
 
   void _openEditDialog(BuildContext context, Item item) {
@@ -278,15 +275,16 @@ class ItemCard extends State<ItemCardStateful> {
           }
     });
   }
-
   @override
   Widget build(BuildContext context) {
     ListTile listTile = new ListTile(
       leading: const Icon(Icons.info),
       title: new Text(item.name),
       subtitle: new Text(item.description),
-      trailing: new Text(item.dateTime.toString()),  
-
+ 
+      // trailing: new Text(item.dateTime.toString()), 
+   
+      
       selected: selected,
       onTap: () => _onTap(context),
       onLongPress: () => _onLongPress(context),
@@ -296,6 +294,7 @@ class ItemCard extends State<ItemCardStateful> {
       child: new Column(
           mainAxisSize: MainAxisSize.min, children: <Widget>[listTile]),
     );
+
   }
 }
 

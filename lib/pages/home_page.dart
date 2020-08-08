@@ -7,9 +7,6 @@ import 'package:firebase_database/firebase_database.dart';
 
 import 'package:connectfirebase/models/todo.dart';
 import 'dart:async';
-import 'package:connectfirebase/pages/show_info.dart';
-import 'package:connectfirebase/pages/detail.dart';
-import 'package:connectfirebase/pages/read_cloudstoge.dart';
 
 import 'package:connectfirebase/pages/drawer_main.dart';
 import 'package:connectfirebase/pages/Dashboard.dart';
@@ -17,9 +14,12 @@ import 'package:connectfirebase/pages/Dashboard.dart';
 
 import 'package:connectfirebase/pages/SwitchWidget.dart';
 
-import 'package:connectfirebase/pages/onoff.dart';
+import 'package:connectfirebase/pages/switch_t.dart';
 
 import 'package:connectfirebase/pages/camera.dart';
+import 'package:connectfirebase/pages/s_2.dart';
+import 'package:connectfirebase/pages/s3.dart';
+import 'package:connectfirebase/pages/sread.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.auth, this.userId, this.logoutCallback})
@@ -72,6 +72,25 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+Widget logout() {
+    return ListTile(
+      leading: Icon(
+        Icons.account_box,
+        size: 36.0,
+        color: Colors.orange,
+      ),
+      title: Text(
+        'Logout ',
+        style: TextStyle(fontSize: 18.0),
+      ),
+      onTap: () {
+        setState(() {
+          myWidget = signOut();
+          Navigator.of(context).pop();
+        });
+      },
+    );
+  }
 Widget menuDashboard() {
     return ListTile(
       leading: Icon(
@@ -92,87 +111,25 @@ Widget menuDashboard() {
     );
   }
 
- Widget menuDetail() {
-    return ListTile(
-      leading: Icon(
-        Icons.beach_access,
-        size: 36.0,
-        color: Colors.red[500],
-      ),
-      title: Text(
-        'Detail test',
-        style: TextStyle(fontSize: 18.0),
-      ),
-      onTap: () {
-        setState(() {
-          myWidget = Detail();
-          Navigator.of(context).pop();
-        });
-      },
-    );
-  }
-
-  
-
- Widget menureadcloud() {
-    return ListTile(
-      leading: Icon(
-        Icons.access_alarm,
-        size: 36.0,
-        color: Colors.green[500],
-      ),
-      title: Text(
-        'Read cloudstoge',
-        style: TextStyle(fontSize: 18.0),
-      ),
-      onTap: () {
-        setState(() {
-          myWidget = ShowProduct();
-          Navigator.of(context).pop();
-        });
-      },
-    );
-  }
-
- Widget menuread() {
-    return ListTile(
-      leading: Icon(
-        Icons.camera_alt,
-        size: 36.0,
-        color: Colors.pink[500],
-      ),
-      title: Text(
-        'Readrealtim',
-        style: TextStyle(fontSize: 18.0),
-      ),
-      onTap: () {
-        setState(() {
-          // myWidget = FirebaseDemoScreen();
-          Navigator.of(context).pop();
-        });
-      },
-    );
-  }
-
-   Widget menua1() {
-    return ListTile(
-      leading: Icon(
-        Icons.camera_alt,
-        size: 36.0,
-        color: Colors.pink[500],
-      ),
-      title: Text(
-        'value box',
-        style: TextStyle(fontSize: 18.0),
-      ),
-      onTap: () {
-        setState(() {
-          myWidget = Dashboard();
-          Navigator.of(context).pop();
-        });
-      },
-    );
-  }
+  //  Widget menua1() {
+  //   return ListTile(
+  //     leading: Icon(
+  //       Icons.camera_alt,
+  //       size: 36.0,
+  //       color: Colors.pink[500],
+  //     ),
+  //     title: Text(
+  //       'value box',
+  //       style: TextStyle(fontSize: 18.0),
+  //     ),
+  //     onTap: () {
+  //       setState(() {
+  //         myWidget = Dashboard();
+  //         Navigator.of(context).pop();
+  //       });
+  //     },
+  //   );
+  // }
 
  Widget menub() {
     return ListTile(
@@ -275,6 +232,65 @@ Widget menuDashboard() {
     );
   }
   
+  Widget a() {
+    return ListTile(
+      leading: Icon(
+        Icons.camera_alt,
+        size: 36.0,
+        color: Colors.pink[500],
+      ),
+      title: Text(
+        'add data5',
+        style: TextStyle(fontSize: 18.0),
+      ),
+      onTap: () {
+        setState(() {
+          myWidget = Testpage5();
+          Navigator.of(context).pop();
+        });
+      },
+    );
+  }
+   Widget s2() {
+    return ListTile(
+      leading: Icon(
+        Icons.camera_alt,
+        size: 36.0,
+        color: Colors.pink[500],
+      ),
+      title: Text(
+        's2',
+        style: TextStyle(fontSize: 18.0),
+      ),
+      onTap: () {
+        setState(() {
+          myWidget = S2();
+          Navigator.of(context).pop();
+        });
+      },
+    );
+  }
+  
+   Widget s3() {
+    return ListTile(
+      leading: Icon(
+        Icons.camera_alt,
+        size: 36.0,
+        color: Colors.pink[500],
+      ),
+      title: Text(
+        'desdd',
+        style: TextStyle(fontSize: 18.0),
+      ),
+      onTap: () {
+        setState(() {
+          myWidget = Dashboard3();
+          Navigator.of(context).pop();
+        });
+      },
+    );
+  }
+  
   
     Widget headMenu() {
     return DrawerHeader(
@@ -320,18 +336,8 @@ Widget menuDashboard() {
           menuDashboard(),
           myDivider(),
 
-          menuDetail(),
-          myDivider(),
-
-          menureadcloud(),
-          myDivider(),
-
-          menuread(),
-          myDivider(),
-
-          
-          menua1(),
-          myDivider(),
+          // menua1(),
+          // myDivider(),
 
           menub(),
           myDivider(),
@@ -347,9 +353,17 @@ Widget menuDashboard() {
 
           menucamera(),
           myDivider(),
+          
+          a(),
+          myDivider(),
+          s2(),
+          myDivider(),
+   s3(),
+          myDivider(),
+
           //menuQRcode(),
-          //myDivider(),
-          //signOutAnExit(),
+          myDivider(),
+          logout(),
         ],
       ),
     );
@@ -360,14 +374,15 @@ Widget menuDashboard() {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
-          title: new Text('Smart App'),
-          actions: <Widget>[
-            new FlatButton(
-                child: new Text('Logout',
-                    style: new TextStyle(fontSize: 17.0, color: Colors.white)),
-                onPressed: signOut)
-          ],
+          // title: new Text('Smart App'),
+          // actions: <Widget>[
+          //   new FlatButton(
+          //       child: new Text('Logout',
+          //           style: new TextStyle(fontSize: 17.0, color: Colors.white)),
+          //       onPressed: signOut)
+          // ],
         ),
+
       body: myWidget,
       drawer: showDrawerMenu(),
 

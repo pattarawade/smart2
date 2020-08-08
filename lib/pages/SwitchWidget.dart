@@ -13,19 +13,22 @@ import 'package:firebase_database/firebase_database.dart';
 class SwitchWidgetClass extends State {
 
     final databaseReference = FirebaseDatabase.instance.reference();
+
+
     int off=0;
     int on=1;
     
     bool switchControl = false;
     var textHolder = 'Switch is OFF light';
 
-    bool switchControl2 = false;
+    bool switchControl2 = false ;
     var textHolder2 = 'Switch is OFF fan';
 
     bool switchControl3 = false;
     var textHolder3 = 'Switch is OFF pump';
 
-
+    bool a ;
+   
  void getData(){
     databaseReference.once().then((DataSnapshot snapshot) {
       print('Data : ${snapshot.value}');
@@ -60,7 +63,6 @@ class SwitchWidgetClass extends State {
   }
   void createpump(){
     databaseReference.child("data/control_pump_update").set({
-      // 'title': 'Mastering EJB',
       'pump':off  //off
     });   
   }
@@ -76,7 +78,6 @@ class SwitchWidgetClass extends State {
       {
         setState(() {
            updatelight();
-         ;
           switchControl = true;
           textHolder = 'Switch is ON light';
         });
@@ -97,6 +98,7 @@ class SwitchWidgetClass extends State {
 
 
   void toggleSwitch2(bool value) {
+
       if(switchControl2 == false)
       {
         setState(() {
@@ -117,6 +119,9 @@ class SwitchWidgetClass extends State {
         print('Switch is OFF fan');
         // Put your code here which you want to execute on Switch OFF event.
       }
+     bool  b = switchControl2 ;
+      a=b; 
+      print(a);
   }
 
 
@@ -143,27 +148,11 @@ class SwitchWidgetClass extends State {
       }
   }
 
-    void _onChanged1(){
-        // setState(() => _value2 = value);
-      print('1');
-    }
-    void _onChanged2(){
-        // setState(() => _value2 = value);
-      print('2222222');
-    }
-
-
-  
     @override
     Widget build(BuildContext context) {
        getData();
       return new Scaffold(
 
-      // appBar: new AppBar(
-      //   title: new Text('Name here'),
-      // ),
-
-      //hit Ctrl+space in intellij to know what are the options you can use in flutter widgets
       body: new Container(
         padding: new EdgeInsets.all(32.0),
         child: new Center(
@@ -178,7 +167,8 @@ class SwitchWidgetClass extends State {
               activeColor: Colors.black,
               activeTrackColor: Colors.grey,
               inactiveThumbColor: Colors.white,
-              inactiveTrackColor: Colors.grey),
+              inactiveTrackColor: Colors.grey,
+              ),
                
                new SwitchListTile(
               onChanged: toggleSwitch2,
@@ -205,7 +195,7 @@ class SwitchWidgetClass extends State {
               // new SwitchListTile( value: _value2, onChanged: _onChanged2,
               //     title: new Text('Hello World', style: new TextStyle(fontWeight: FontWeight.bold, color: Colors.red)),
               // )
-            
+
             
             ],
           ),

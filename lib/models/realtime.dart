@@ -15,7 +15,7 @@ class Realtimedta {
 
   toJson() {
     return {
-       "userId": userId,
+      "userId": userId,
       "Humidity": humidity,
       "Temperature": temperature,
       "Soilmoisture": soil,

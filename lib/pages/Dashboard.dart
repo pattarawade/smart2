@@ -22,6 +22,7 @@ class _DashboardState extends State<Dashboard>
   with SingleTickerProviderStateMixin {
   bool isLoading = false;
   final GoogleSignIn googleSignIn = GoogleSignIn();
+  final myController = TextEditingController();
 
   final databaseReference = FirebaseDatabase.instance.reference();
   String heatIndexText;
@@ -63,7 +64,9 @@ class _DashboardState extends State<Dashboard>
    @override
   void initState() {
     // a = true;
+   
     super.initState();
+     myController.addListener(_printLatestValue);
     _timer = Timer.periodic(Duration(seconds: 10), (timer) {
         setState(() {});
     });
@@ -85,13 +88,18 @@ class _DashboardState extends State<Dashboard>
       
     });
   }
+
+ _printLatestValue() {
+    print("Second text field: ${myController.text}");
+  }
    @override
   void dispose() {
+
+     myController.dispose ();
     // databaseReference.dispose();
     super.dispose();
     _timer.cancel();
   }
-
 
 
   

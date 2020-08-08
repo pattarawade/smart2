@@ -125,15 +125,15 @@ class _HomeState extends State<Homecamera> {
                                 child: Align(
                               child: Column(
                                 children: <Widget>[
-                                  SizedBox(
-                                    height: 16,
-                                  ),
-                                  Text(
-                                    'ESP32\'s cam',
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w300),
-                                  ),
+                                  // SizedBox(
+                                  //   height: 16,
+                                  // ),
+                                  // Text(
+                                  //   'ESP32\'s cam',
+                                  //   style: TextStyle(
+                                  //       fontSize: 14,
+                                  //       fontWeight: FontWeight.w300),
+                                  // ),
                                   SizedBox(
                                     height: 4,
                                   ),

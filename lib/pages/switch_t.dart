@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:connectfirebase/services/authentication.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:connectfirebase/models/todo.dart';
+import 'package:connectfirebase/models/swif.dart';
 // import 'package:flutter_login_demo/models/todo.dart';
 import 'dart:async';
 
-class Testpage extends StatefulWidget {
-  Testpage({Key key, this.auth, this.userId, this.logoutCallback})
+class Testpage5 extends StatefulWidget {
+  Testpage5({Key key, this.auth, this.userId, this.logoutCallback})
       : super(key: key);
 
   final BaseAuth auth;
@@ -17,8 +17,8 @@ class Testpage extends StatefulWidget {
   State<StatefulWidget> createState() => new _TestpageState();
 }
 
-class _TestpageState extends State<Testpage> {
-  List<Todo> _todoList;
+class _TestpageState extends State<Testpage5> {
+  List<Switch1> _todoList;
 
   final FirebaseDatabase _database = FirebaseDatabase.instance;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -28,6 +28,10 @@ class _TestpageState extends State<Testpage> {
   StreamSubscription<Event> _onTodoChangedSubscription;
 
   Query _todoQuery;
+
+  final databaseReference = FirebaseDatabase.instance.reference();
+  int on=1;
+  int off=0;
 
   //bool _isEmailVerified = false;
 
@@ -40,7 +44,7 @@ class _TestpageState extends State<Testpage> {
     _todoList = new List();
     _todoQuery = _database
         .reference()
-        .child("todo")
+        .child("todo1")
         .orderByChild("userId")
         .equalTo(widget.userId);
     _onTodoAddedSubscription = _todoQuery.onChildAdded.listen(onEntryAdded);
@@ -60,13 +64,13 @@ class _TestpageState extends State<Testpage> {
 
     setState(() {
       _todoList[_todoList.indexOf(oldEntry)] =
-          Todo.fromSnapshot(event.snapshot);
+          Switch1.fromSnapshot(event.snapshot);
     });
   }
 
   onEntryAdded(Event event) {
     setState(() {
-      _todoList.add(Todo.fromSnapshot(event.snapshot));
+      _todoList.add(Switch1.fromSnapshot(event.snapshot));
     });
   }
 
@@ -81,34 +85,37 @@ class _TestpageState extends State<Testpage> {
 
   addNewTodo(String todoItem) {
     if (todoItem.length > 0) {
-      Todo todo = new Todo(todoItem.toString(), widget.userId, false);
-      _database.reference().child("todo").push().set(todo.toJson());
+      Switch1 todo = new Switch1(todoItem.toString(),todoItem.toString(), widget.userId,false);
+      _database.reference().child("todo1").push().set(todo.toJson());
+      // createpump();  
+
+
     }
   }
 
 
-  updateTodo(Todo todo) {
+  updateTodo(Switch1 todo) {
     //Toggle completed
     todo.completed = !todo.completed;
     if (todo != null) {
-      _database.reference().child("todo").child(todo.key).set(todo.toJson());
+      _database.reference().child("todo1").child(todo.key).set(todo.toJson());
+      //  updatepump();
+    
     }
   }
 
 
   deleteTodo(String todoId, int index) {
-    _database.reference().child("todo").child(todoId).remove().then((_) {
+    _database.reference().child("todo1").child(todoId).remove().then((_) {
       print("Delete $todoId successful");
       setState(() {
         _todoList.removeAt(index);
       });
     });
   }
-
-
+  
   showAddTodoDialog(BuildContext context) async {
     _textEditingController.clear();
-
     await showDialog<String>(
         context: context,
         builder: (BuildContext context) {
@@ -124,7 +131,6 @@ class _TestpageState extends State<Testpage> {
                     labelText: 'Add new todo',
                   ),
                 ))
-                
      
               ],
             ),
@@ -146,6 +152,8 @@ class _TestpageState extends State<Testpage> {
           );
         });
   }
+
+
 
   Widget showTodoList() {
     if (_todoList.length > 0) {
@@ -183,6 +191,8 @@ class _TestpageState extends State<Testpage> {
                     }),
               ),
             );
+
+            
           });
     } else {
       return Center(
@@ -197,16 +207,7 @@ class _TestpageState extends State<Testpage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        // appBar: new AppBar(
-        //   title: new Text('Flutter login demo'),
-        //   actions: <Widget>[
-        //     new FlatButton(
-        //         child: new Text('Logout',
-        //             style: new TextStyle(fontSize: 17.0, color: Colors.white)),
-        //         onPressed: signOut)
-        //   ],
-        // ),
-        
+     
         body: showTodoList(),
         floatingActionButton: FloatingActionButton(
           onPressed: () {

@@ -40,6 +40,9 @@ class ItemFormState extends State<ItemForm> {
     if (item.dateTime != null) {
       _fromDate = item.dateTime;
     }
+  //   if (item.dateTime2 != null) {
+  //     _fromDate2 = item.dateTime2;
+  //   }
   }
 
   void showInSnackBar(String value) {
@@ -54,7 +57,7 @@ class ItemFormState extends State<ItemForm> {
     } else {
       form.save();
       Navigator.of(context).pop(new Item.fromCode(
-          _item.name, _item.description, _fromDate,_fromDate2,_item.dateTime3, _item.price));
+      _item.name, _item.description, _fromDate,_fromDate2, _item.price,false));
       showInSnackBar('Added new item.');
     }
   }
@@ -93,8 +96,6 @@ class ItemFormState extends State<ItemForm> {
                       onSaved: (val) => _item.name = val,
                     ),
                   ),
-
-
                   new ListTile(
                     leading: const Icon(Icons.info),
                     title: new TextFormField(
@@ -106,22 +107,17 @@ class ItemFormState extends State<ItemForm> {
                       onSaved: (val) => _item.description = val,
                     ),
                   ),
-
                   new ListTile(
                     leading: const Icon(Icons.calendar_today),
                     title: new DateTimePicker(
                       selectedDate: _fromDate,
                       selectedTime: _fromTime,
-
                       selectDate: (DateTime date) {
                         setState(() {
                           // var date = new DateTime.fromMicrosecondsSinceEpoch(timestamp);
                           _fromDate = date;
-
-
                         });
                       },
-                      
                       selectTime: (TimeOfDay time) {
                         setState(() {
                           _fromTime = time;
@@ -129,8 +125,6 @@ class ItemFormState extends State<ItemForm> {
                       },
                     ),
                   ),
-
-                  
                   new ListTile(
                     leading: const Icon(Icons.calendar_today),
                     title: new DateTimePicker(
@@ -162,6 +156,7 @@ class ItemFormState extends State<ItemForm> {
           //             onSaved: (val) => _item.dateTime3 = val,
           //           ),
           //         ),
+
                   new ListTile(
                     leading: const Icon(Icons.info),
                     title: new TextFormField(
@@ -186,15 +181,12 @@ class ItemFormState extends State<ItemForm> {
                     onPressed: () {
                       Navigator.pop(context);
                     }),
-    
-
                   // new FlatButton(
                   // child: const Text('Cancel'),
                   // onPressed: () {
                   //   Navigator.pop(context);
-                  // }),
+                  // }), 
                   
-                    
                 ],
               ),
             ))
