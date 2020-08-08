@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
         title: 'login demo',
         debugShowCheckedModeBanner: false,
         theme: new ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.teal,
+          primaryColor: Colors.teal,
         ),
         home: new RootPage(auth: new Auth()));
   }

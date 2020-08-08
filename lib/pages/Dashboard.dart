@@ -134,14 +134,15 @@ class _DashboardState extends State<Dashboard>
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Text('Temperature'),
+                              Text('Temperature',
+                                style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold,),),
                               Text(
                                 '${tempAnimation.value.toInt()}',
                                 style: TextStyle(
                                     fontSize: 50, fontWeight: FontWeight.bold),
                               ),
-                              Text(
-                                '°C',
+                              Text('°C',
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
@@ -161,11 +162,13 @@ class _DashboardState extends State<Dashboard>
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Text('Humidity'),
+                              Text('Humidity',
+                                style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold,),),
                               Text(
                                 '${humidityAnimation.value.toInt()}',
                                 style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
+                                    fontSize: 50, fontWeight: FontWeight.bold),
                               ),
                               Text(
                                 '%',
@@ -189,7 +192,9 @@ class _DashboardState extends State<Dashboard>
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Text('Soilmoisture'),
+                              Text('Soilmoisture',
+                                style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold,),),
                               Text(
                                 '${soilAnimation.value.toInt()}',
                                 style: TextStyle(
@@ -217,7 +222,9 @@ class _DashboardState extends State<Dashboard>
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Text('Water Level'),
+                              Text('Water Level',
+                                style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold,),),
                               Text(
                                 '${waterAnimation.value.toInt()}',
                                 style: TextStyle(

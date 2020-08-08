@@ -94,13 +94,11 @@ Widget logout() {
 Widget menuDashboard() {
     return ListTile(
       leading: Icon(
-        Icons.account_box,
+        Icons.assessment,
         size: 36.0,
-        color: Colors.orange,
+        color: Colors.teal,
       ),
-      title: Text(
-        'Realtime Value',
-        style: TextStyle(fontSize: 18.0),
+      title: Text('Realtime Value',style: TextStyle(fontSize: 18.0,fontFamily: 'YanoneKaffeesatz-VariableFont_wght',),
       ),
       onTap: () {
         setState(() {
@@ -154,13 +152,12 @@ Widget menuDashboard() {
   Widget menub1() {
     return ListTile(
       leading: Icon(
-        Icons.camera_alt,
+        Icons.phonelink_setup,
         size: 36.0,
-        color: Colors.pink[500],
+        color: Colors.teal,
       ),
       title: Text(
-        'switf',
-        style: TextStyle(fontSize: 18.0),
+        'Control',style: TextStyle(fontSize: 18.0,),
       ),
       onTap: () {
         setState(() {
@@ -196,13 +193,11 @@ Widget menuDashboard() {
   Widget menutime() {
     return ListTile(
       leading: Icon(
-        Icons.camera_alt,
+        Icons.settings,
         size: 36.0,
-        color: Colors.pink[500],
+        color: Colors.teal,
       ),
-      title: Text(
-        'DateTimeP',
-        style: TextStyle(fontSize: 18.0),
+      title: Text('Setting Datetime',style: TextStyle(fontSize: 18.0,),
       ),
       onTap: () {
         setState(() {
@@ -212,16 +207,14 @@ Widget menuDashboard() {
       },
     );
   }
-   Widget menucamera() {
+    Widget menucamera() {
     return ListTile(
       leading: Icon(
-        Icons.camera_alt,
+        Icons.ondemand_video,
         size: 36.0,
-        color: Colors.pink[500],
+        color: Colors.teal,
       ),
-      title: Text(
-        'Camera',
-        style: TextStyle(fontSize: 18.0),
+      title: Text('Monitor',style: TextStyle(fontSize: 18.0,),
       ),
       onTap: () {
         setState(() {
@@ -256,7 +249,7 @@ Widget menuDashboard() {
       leading: Icon(
         Icons.camera_alt,
         size: 36.0,
-        color: Colors.pink[500],
+        color: Colors.teal,
       ),
       title: Text(
         's2',
@@ -276,7 +269,7 @@ Widget menuDashboard() {
       leading: Icon(
         Icons.camera_alt,
         size: 36.0,
-        color: Colors.pink[500],
+        color: Colors.teal,
       ),
       title: Text(
         'desdd',
@@ -306,10 +299,10 @@ Widget menuDashboard() {
           Container(
             width: 75.0,
             height: 75.0,
-            child: Image.asset('images/logo1.png'),
+            child: Image.asset('images/logo.png'),
           ),
           Text(
-            'smart app',
+            'Smart App',
             style: TextStyle(
               color: Colors.black,
               fontSize: 24.0,
@@ -339,8 +332,8 @@ Widget menuDashboard() {
           // menua1(),
           // myDivider(),
 
-          menub(),
-          myDivider(),
+          //menub(),
+          //myDivider(),
           
           menub1(),
           myDivider(),
@@ -348,22 +341,24 @@ Widget menuDashboard() {
           menutime(),
           myDivider(),
            
-          menuonoff(),
-          myDivider(),
+          //menuonoff(),
+          //myDivider(),
 
           menucamera(),
-          myDivider(),
+         myDivider(),
           
-          a(),
-          myDivider(),
+         // a(),
+          //myDivider(),
+          
           s2(),
           myDivider(),
-   s3(),
+
+           s3(),
           myDivider(),
 
           //menuQRcode(),
-          myDivider(),
-          logout(),
+         // myDivider(),
+         // logout(),
         ],
       ),
     );
@@ -374,13 +369,13 @@ Widget menuDashboard() {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
-          // title: new Text('Smart App'),
-          // actions: <Widget>[
-          //   new FlatButton(
-          //       child: new Text('Logout',
-          //           style: new TextStyle(fontSize: 17.0, color: Colors.white)),
-          //       onPressed: signOut)
-          // ],
+          title: new Center(child: new Text('Smart App',textAlign: TextAlign.center,
+              style: new TextStyle(fontSize: 25.0, color: Colors.white,))),
+          actions: <Widget>[
+           new FlatButton(
+               child: Icon(Icons.logout,color: Colors.white,),
+               onPressed: signOut)
+          ],
         ),
 
       body: myWidget,

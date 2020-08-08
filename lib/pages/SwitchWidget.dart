@@ -153,49 +153,104 @@ class SwitchWidgetClass extends State {
        getData();
       return new Scaffold(
 
+              
       body: new Container(
-        padding: new EdgeInsets.all(32.0),
+        padding: new EdgeInsets.all(50.0),
         child: new Center(
           child: new Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               // new Switch(value: _value1, onChanged: _onChanged3),
-             
-              new SwitchListTile(
-              onChanged: toggleSwitch,
-              value: switchControl,
-              title : new Text('light', style: new TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
-              activeColor: Colors.black,
-              activeTrackColor: Colors.grey,
-              inactiveThumbColor: Colors.white,
-              inactiveTrackColor: Colors.grey,
+              Container(
+                 child: Container( width: 350,height: 100,
+                 child: Card(
+                  color: Colors.teal[50],
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),  
+                  ),
+                    child: new Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                       new SwitchListTile(
+                          onChanged: toggleSwitch,
+                          value: switchControl,
+                          title : new Text('Light', style: new TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold, color: Colors.black,fontFamily: 'YanoneKaffeesatz-VariableFont_wght',)),
+                          activeColor: Colors.teal,
+                          activeTrackColor: Colors.teal[300],
+                          inactiveThumbColor: Colors.white,
+                          inactiveTrackColor: Colors.grey,
+                          secondary: const Icon(Icons.lightbulb_outline,color: Colors.yellow,size: 30.0,),
+                        ),
+                      ],
+                    ),
+                  ),
+                 ), 
               ),
-               
-               new SwitchListTile(
-              onChanged: toggleSwitch2,
-              value: switchControl2,
-              title : new Text('fan', style: new TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
-              activeColor: Colors.black,
-              activeTrackColor: Colors.grey,
-              inactiveThumbColor: Colors.white,
-              inactiveTrackColor: Colors.grey),
 
-               new SwitchListTile(
-              onChanged: toggleSwitch3,
-              value: switchControl3,
-              title : new Text('pump', style: new TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
-              activeColor: Colors.black,
-              activeTrackColor: Colors.grey,
-              inactiveThumbColor: Colors.white,
-              inactiveTrackColor: Colors.grey
+              Container(
+                 child: Container( width: 350,height: 100,
+                 child: Card(
+                  color: Colors.teal[100],
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),  
+                  ), 
+                    child: new Column(
+                     mainAxisAlignment: MainAxisAlignment.center,
+                     crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                       new SwitchListTile(
+                          onChanged: toggleSwitch2,
+                          value: switchControl2,
+                          title : new Text('Fan', style: new TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold, color: Colors.black, fontFamily: 'YanoneKaffeesatz-VariableFont_wght',)),
+                          activeColor: Colors.teal,
+                          activeTrackColor: Colors.teal[300],
+                          inactiveThumbColor: Colors.white,
+                          inactiveTrackColor: Colors.grey,
+                          secondary: const Icon(Icons.toys_outlined,color: Colors.brown,size: 30.0,),
+                          ),
+                       ],
+                      ),
+                    ),
+                 ), 
+              ),
+
+              Container(
+                 child: Container( width: 350,height: 100,
+                 child: Card(
+                  color: Colors.teal[200],
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),  
+                  ),
+                 
+                  child: new Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                     new SwitchListTile(
+                        onChanged: toggleSwitch3,
+                        value: switchControl3,
+                        title : new Text('Waterpump', style: new TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold, color: Colors.black,fontFamily:'YanoneKaffeesatz-VariableFont_wght',)),
+                        activeColor: Colors.teal,
+                        activeTrackColor: Colors.teal[300],
+                        inactiveThumbColor: Colors.white,
+                        inactiveTrackColor: Colors.grey,
+                        secondary: const Icon(Icons.invert_colors,color: Colors.blue,size: 30.0,),
+                        ),
+                       ],
+                      ),
+                    ), 
+                 ), 
+              ),
+            
               
-              ),
-
               // new Switch(value: _value1, onChanged: _onChanged1),
 
               // new SwitchListTile( value: _value2, onChanged: _onChanged2,
               //     title: new Text('Hello World', style: new TextStyle(fontWeight: FontWeight.bold, color: Colors.red)),
               // )
-
+            
             
             ],
           ),
