@@ -92,14 +92,14 @@ class _DashboardState extends State<Dashboard>
  _printLatestValue() {
     print("Second text field: ${myController.text}");
   }
-   @override
-  void dispose() {
+  //  @override
+  // void dispose() {
 
-     myController.dispose ();
-    // databaseReference.dispose();
-    super.dispose();
-    _timer.cancel();
-  }
+  //    myController.dispose ();
+  //   // databaseReference.dispose();
+  //   super.dispose();
+  //   _timer.cancel();
+  // }
 
 
   
