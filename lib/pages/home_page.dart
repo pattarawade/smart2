@@ -373,7 +373,7 @@ Widget menuDashboard() {
               style: new TextStyle(fontSize: 25.0, color: Colors.white,))),
           actions: <Widget>[
            new FlatButton(
-               child: Icon(Icons.vpn_key,color: Colors.white,),
+               child: Icon(Icons.exit_to_app,color: Colors.white,),
                onPressed: signOut)
           ],
         ),

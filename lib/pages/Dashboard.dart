@@ -29,6 +29,7 @@ class _DashboardState extends State<Dashboard>
   Timer _timer;
   bool a;
     
+  bool _disposed = false;
 
   AnimationController progressController;
   Animation<double> tempAnimation;
@@ -42,8 +43,11 @@ class _DashboardState extends State<Dashboard>
         vsync: this, duration: Duration(milliseconds: 5000)); //5s
 
     tempAnimation = Tween<double>(begin: -50, end: temp).animate(progressController)..addListener(() {  
-      setState(() {print(tempAnimation.value);  });
-      return tempAnimation.value;
+      setState(() {
+
+        // print(tempAnimation.value);  
+        });
+      // return tempAnimation.value;
         });
 
     humidityAnimation =Tween<double>(begin: 0, end: humid).animate(progressController)..addListener(() {  setState(() {});
@@ -65,11 +69,12 @@ class _DashboardState extends State<Dashboard>
   void initState() {
     // a = true;
    
-    super.initState();
+    
+    
      myController.addListener(_printLatestValue);
-    _timer = Timer.periodic(Duration(seconds: 10), (timer) {
-        setState(() {});
-    });
+    // _timer = Timer.periodic(Duration(seconds: 10), (timer) {
+    //     setState(() {});
+    // });
 
 
     //  setState(() {});
@@ -87,19 +92,21 @@ class _DashboardState extends State<Dashboard>
       _DashboardInit(temp, humidity, soil, water);
       
     });
+    super.initState();
   }
 
  _printLatestValue() {
     print("Second text field: ${myController.text}");
   }
-  //  @override
-  // void dispose() {
 
-  //    myController.dispose ();
-  //   // databaseReference.dispose();
-  //   super.dispose();
-  //   _timer.cancel();
-  // }
+   @override
+  void dispose() {
+ _disposed = true;
+     myController.dispose ();
+    // databaseReference.dispose();
+    super.dispose();
+    // _timer.cancel();
+  }
 
 
   

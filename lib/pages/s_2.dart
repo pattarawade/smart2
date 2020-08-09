@@ -8,22 +8,26 @@ import 'dart:async';
 class S2 extends StatefulWidget {
   S2({Key key, this.auth, this.userId, this.logoutCallback})
       : super(key: key);
-
+ 
   final BaseAuth auth;
   final VoidCallback logoutCallback;
   final String userId;
 
   @override
   State<StatefulWidget> createState() => new _TestpageState();
+
+   
 }
 
 class _TestpageState extends State<S2> {
   List<Item> _todoList;
 
   final FirebaseDatabase _database = FirebaseDatabase.instance;
+
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   final _textEditingController = TextEditingController();
+
   StreamSubscription<Event> _onTodoAddedSubscription;
   StreamSubscription<Event> _onTodoChangedSubscription;
 
@@ -34,7 +38,7 @@ class _TestpageState extends State<S2> {
   @override
   void initState() {
     super.initState();
-
+      readData();
     _todoList = new List();
     _todoQuery = _database
         .reference()
@@ -44,8 +48,10 @@ class _TestpageState extends State<S2> {
     _onTodoAddedSubscription = _todoQuery.onChildAdded.listen(onEntryAdded);
     _onTodoChangedSubscription = _todoQuery.onChildChanged.listen(onEntryChanged);
   }
+
   @override
   void dispose() {
+
     _onTodoAddedSubscription.cancel();
     _onTodoChangedSubscription.cancel();
     super.dispose();
@@ -68,14 +74,14 @@ class _TestpageState extends State<S2> {
     });
   }
 
-  signOut() async {
-    try {
-      await widget.auth.signOut();
-      widget.logoutCallback();
-    } catch (e) {
-      print(e);
-    }
-  }
+  // signOut() async {
+  //   try {
+  //     await widget.auth.signOut();
+  //     widget.logoutCallback();
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
 
   // addNewTodo(String todoItem) {
   //   if (todoItem.length > 0) {
@@ -99,19 +105,55 @@ class _TestpageState extends State<S2> {
     }
   }
 
-  test(Item a){
+  void readData() async {
+     print('readData Work!!!');
+      DatabaseReference databaseReference = 
+      _database.reference().child('item'); 
+      await databaseReference.once().then((DataSnapshot dataSnapshop) {
+      //print('Data ==> ${dataSnapshop.value}');
+       Map<dynamic, dynamic> values = dataSnapshop.value;
+       values. forEach((key,values){
+        // print(values [ 'name']);
+        String a= values [ 'name'];
+        print(a);
+         }); 
+      Map<dynamic, dynamic> s = dataSnapshop.value;
+       s. forEach((key,s){
+        // print(values [ 'name']);
+        bool w= s [ 'completed'];
+        print(w);
+        if(w==true){
+            print("1");
 
-    print(a.dateTime);
-    print("//////////////////////////////////////////////");
+        }
+        
+         }); 
 
-    //  String todoId = _todoList[index].key;
 
-    //         String name = _todoList[index].name;
+
+       });
+
+  }
+
+
+  updateTodo2(Item todo) {
+    //Toggle completed
+    // todo.completed = !todo.completed;
+    // if (todo != null) {
+      // _database.reference().child("item").child(todo.key).set(todo.toJson());
+       _database.reference().child("item").child(todo.key).equalTo("fales").once();
+
+      // _database.orderByChild("age").equalTo("4").once();
+      //  updatepump();
+    
+    // }
+  }
+  check(Item t){
+  bool completed=t.completed;
+  print(completed);
   }
 
   void checkbool(Item todo){
-   
-
     String key=todo.key;
     String name =todo.name;
     String description=todo.description;
@@ -142,14 +184,14 @@ class _TestpageState extends State<S2> {
 
   }
 
-  // deleteTodo(String todoId, int index) {
-  //   _database.reference().child("item").child(todoId).remove().then((_) {
-  //     print("Delete $todoId successful");
-  //     setState(() {
-  //       _todoList.removeAt(index);
-  //     });
-  //   });
-  // }
+  deleteTodo(String todoId, int index) {
+    _database.reference().child("item").child(todoId).remove().then((_) {
+      print("Delete $todoId successful");
+      setState(() {
+        _todoList.removeAt(index);
+      });
+    });
+  }
   
   // showAddTodoDialog(BuildContext context) async {
   //   _textEditingController.clear();
@@ -209,10 +251,10 @@ class _TestpageState extends State<S2> {
 
               key: Key(todoId),
       
-              // background: Container(color: Colors.red),
-              // onDismissed: (direction) async {
-              //   deleteTodo(todoId, index);
-              // },
+              background: Container(color: Colors.red),
+              onDismissed: (direction) async {
+                deleteTodo(todoId, index);
+              },
 
               child: ListTile(
                 title: Text(
@@ -230,6 +272,8 @@ class _TestpageState extends State<S2> {
                     onPressed: () {
                       updateTodo(_todoList[index]);
                       checkbool(_todoList[index]);
+                      // check(_todoList[index]);
+
                     }),
               ),
             );
@@ -245,20 +289,6 @@ class _TestpageState extends State<S2> {
   }
 
 
-  //   Widget _showForm() {
-  //   return new Container(
-  //       padding: EdgeInsets.all(16.0),
-  //       child: new Form(
-          
-  //         child: new ListView(
-  //           shrinkWrap: true,
-  //           children: <Widget>[
-  //         showAddTodoDialog(context),
-  //         //  showEmailInput(),
-  //           ],
-  //         ),
-  //       ));
-  // }
 
   @override
   Widget build(BuildContext context) {
