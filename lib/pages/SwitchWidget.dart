@@ -208,7 +208,7 @@ class SwitchWidgetClass extends State {
                           activeTrackColor: Colors.teal[300],
                           inactiveThumbColor: Colors.white,
                           inactiveTrackColor: Colors.grey,
-                          secondary: const Icon(Icons.toys_outlined,color: Colors.brown,size: 30.0,),
+                          secondary: const Icon(Icons.ac_unit,color: Colors.brown,size: 30.0,),
                           ),
                        ],
                       ),
