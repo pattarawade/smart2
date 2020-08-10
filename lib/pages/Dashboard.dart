@@ -1,12 +1,10 @@
 import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-
 import 'package:connectfirebase/models/realtime.dart';
 
 import 'CircleProgress.dart';
@@ -118,7 +116,6 @@ class _DashboardState extends State<Dashboard>
   @override
   Widget test() {
     return Scaffold(
-      
 
       body:
 
@@ -160,7 +157,7 @@ class _DashboardState extends State<Dashboard>
                                 style: TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.bold,),),
                               Text(
-                                '${tempAnimation.value.toDouble()}',
+                                '${tempAnimation.value.toDouble().toStringAsFixed(1)}',
                                 style: TextStyle(
                                     fontSize: 50, fontWeight: FontWeight.bold),
                               ),
@@ -204,7 +201,7 @@ class _DashboardState extends State<Dashboard>
                                 style: TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.bold,),),
                               Text(
-                                '${humidityAnimation.value.toDouble()}',
+                                '${humidityAnimation.value.toDouble().toStringAsFixed(1)}',
                                 style: TextStyle(
                                     fontSize: 50, fontWeight: FontWeight.bold),
                               ),
@@ -250,7 +247,7 @@ class _DashboardState extends State<Dashboard>
                                 style: TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.bold,),),
                               Text(
-                                '${soilAnimation.value.toInt()}',
+                                '${soilAnimation.value.toDouble().toStringAsFixed(1)}',
                                 style: TextStyle(
                                     fontSize: 50, fontWeight: FontWeight.bold),
                               ),
