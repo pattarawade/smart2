@@ -155,15 +155,15 @@ class SwitchWidgetClass extends State {
 
               
       body: new Container(
-        padding: new EdgeInsets.all(50.0),
-        child: new Center(
+        padding: new EdgeInsets.all(30.0),
+        
           child: new Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                //mainAxisAlignment: MainAxisAlignment.center,
+                //crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               // new Switch(value: _value1, onChanged: _onChanged3),
               Container(
-                 child: Container( width: 350,height: 100,
+                 child: Container( width: 350,height: 120,
                  child: Card(
                   color: Colors.teal[50],
                   shape: RoundedRectangleBorder(
@@ -190,7 +190,7 @@ class SwitchWidgetClass extends State {
               ),
 
               Container(
-                 child: Container( width: 350,height: 100,
+                 child: Container( width: 350,height: 120,
                  child: Card(
                   color: Colors.teal[100],
                   shape: RoundedRectangleBorder(
@@ -217,7 +217,7 @@ class SwitchWidgetClass extends State {
               ),
 
               Container(
-                 child: Container( width: 350,height: 100,
+                 child: Container( width: 350,height: 120,
                  child: Card(
                   color: Colors.teal[200],
                   shape: RoundedRectangleBorder(
@@ -255,7 +255,6 @@ class SwitchWidgetClass extends State {
             ],
           ),
         ),
-      ),
     );
       
   }
