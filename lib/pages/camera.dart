@@ -21,7 +21,7 @@ class Camera extends StatelessWidget {
       theme: ThemeData.dark(),
       title: "camera",
       home: Homecamera(
-        channel: IOWebSocketChannel.connect('ws://192.168.0.107:2222'),
+        channel: IOWebSocketChannel.connect('ws://192.168.0.107:2223'),
       ),
     );
   }
@@ -60,6 +60,7 @@ class _HomeState extends State<Homecamera> {
 
   @override
   void dispose() {
+
     widget.channel.sink.close();
     super.dispose();
   }
@@ -84,7 +85,6 @@ class _HomeState extends State<Homecamera> {
               screenHeight > videoHeight ? videoHeight : screenHeight;
           newVideoSizeWidth = videoWidth * newVideoSizeHeight / videoHeight;
         }
-
         return Container(
           color: Colors.black,
           child: StreamBuilder(
@@ -161,7 +161,8 @@ class _HomeState extends State<Homecamera> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
+                               
+                               children: <Widget>[
                                   IconButton(
                                       icon: Icon(
                                     Icons.videocam,
@@ -174,11 +175,11 @@ class _HomeState extends State<Homecamera> {
                                     ),
                                     onPressed: takeScreenShot,
                                   ),
-                                  IconButton(
-                                      icon: Icon(
-                                    Icons.mic,
-                                    size: 24,
-                                  )),
+                                  // IconButton(
+                                  //     icon: Icon(
+                                  //   Icons.mic,
+                                  //   size: 24,
+                                  // )),
                                   IconButton(
                                       icon: Icon(
                                     Icons.speaker,
@@ -190,6 +191,8 @@ class _HomeState extends State<Homecamera> {
                                     size: 24,
                                   ))
                                 ],
+
+
                               ),
                             ),
                           ),
