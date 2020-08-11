@@ -14,9 +14,7 @@ class S2 extends StatefulWidget {
   final String userId;
 
   @override
-  State<StatefulWidget> createState() => new _TestpageState();
-
-   
+  State<StatefulWidget> createState() => new _TestpageState();  
 }
 
 class _TestpageState extends State<S2> {
@@ -104,7 +102,6 @@ class _TestpageState extends State<S2> {
     
     }
   }
-
   void readData() async {
      print('readData Work!!!');
       DatabaseReference databaseReference = 
@@ -125,16 +122,11 @@ class _TestpageState extends State<S2> {
         if(w==true){
             print("1");
 
-        }
-        
+           }
          }); 
 
-
-
        });
-
   }
-
 
   updateTodo2(Item todo) {
     //Toggle completed
@@ -145,7 +137,6 @@ class _TestpageState extends State<S2> {
 
       // _database.orderByChild("age").equalTo("4").once();
       //  updatepump();
-    
     // }
   }
   check(Item t){
@@ -234,6 +225,10 @@ class _TestpageState extends State<S2> {
 
    
 
+ 
+
+
+
   Widget showTodoList() {
     if (_todoList.length > 0) {
       return ListView.builder(
@@ -277,6 +272,7 @@ class _TestpageState extends State<S2> {
                     }),
               ),
             );
+
           });
     } else {
       return Center(
@@ -288,8 +284,6 @@ class _TestpageState extends State<S2> {
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -298,7 +292,7 @@ class _TestpageState extends State<S2> {
           body: showTodoList(),
         // floatingActionButton: FloatingActionButton(
         //   onPressed: () {
-        //   // _showForm();
+        //   // update();
 
         //   },
         //   // tooltip: 'Increment',
