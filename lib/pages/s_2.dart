@@ -31,6 +31,13 @@ class _TestpageState extends State<S2> {
 
   Query _todoQuery;
 
+  bool buttonState = true;
+  void _buttonChange() {
+    setState(() {
+      buttonState = !buttonState;
+    });
+  }
+
 //  final DatabaseReference itemRef = FirebaseDatabase.instance.reference().child("item");
 
   @override
@@ -103,17 +110,18 @@ class _TestpageState extends State<S2> {
     }
   }
   void readData() async {
-     print('readData Work!!!');
+    //  print('readData Work!!!');
       DatabaseReference databaseReference = 
       _database.reference().child('item'); 
       await databaseReference.once().then((DataSnapshot dataSnapshop) {
       //print('Data ==> ${dataSnapshop.value}');
-       Map<dynamic, dynamic> values = dataSnapshop.value;
-       values. forEach((key,values){
-        // print(values [ 'name']);
-        String a= values [ 'name'];
-        print(a);
-         }); 
+
+      //  Map<dynamic, dynamic> values = dataSnapshop.value;
+      //  values. forEach((key,values){
+      //   // print(values [ 'name']);
+      //   String a= values [ 'name'];
+      //   print(a);
+      //    }); 
       Map<dynamic, dynamic> s = dataSnapshop.value;
        s. forEach((key,s){
         // print(values [ 'name']);
@@ -230,6 +238,10 @@ class _TestpageState extends State<S2> {
 
 
   Widget showTodoList() {
+      DatabaseReference databaseReference = 
+      _database.reference().child('item'); 
+      
+
     if (_todoList.length > 0) {
       return ListView.builder(
           shrinkWrap: true,
@@ -256,7 +268,8 @@ class _TestpageState extends State<S2> {
                   name,
                   style: TextStyle(fontSize: 20.0),
                 ),
-                trailing: IconButton(
+                trailing: 
+                 IconButton(
                     icon: (completed)
                         ? Icon(
                             Icons.brightness_2 ,
@@ -265,11 +278,41 @@ class _TestpageState extends State<S2> {
                           )
                         : Icon(Icons.brightness_2, color: Colors.black, size: 30.0),
                     onPressed: () {
-                      updateTodo(_todoList[index]);
-                      checkbool(_todoList[index]);
+                       databaseReference.once().then((DataSnapshot dataSnapshop) {
+                          Map<dynamic, dynamic> s = dataSnapshop.value;
+                          s. forEach((key,s){
+                            // print(values [ 'name']);
+                            bool w= s [ 'completed'];
+                            print(w);
+                            // if(w==true){
+                            //     print("1");
+                            //   }
+                      if (w ==true) {
+                                // updateTodo(_todoList[index]);
+                                // checkbool(_todoList[index]);
+                                //  updateTodo(_todoList[index]);
+                                // checkbool(_todoList[index]);
+                                print("*******มีค่า trueอยู่ *********");
+                               }
+
+                        if(w==false){
+                            print("*******มีค่า false อยู่ *********");
+                        }
+                        
+                        
+                            }); 
+                          
+                          });
+
+
+                      // if (completed =!true) {
+                        // updateTodo(_todoList[index]);
+                        // checkbool(_todoList[index]);
+                      // }
                       // check(_todoList[index]);
 
                     }),
+                    
               ),
             );
 
