@@ -287,28 +287,31 @@ class _TestpageState extends State<S2> {
                             // if(w==true){
                             //     print("1");
                             //   }
+                            
                       if (w ==true) {
                                 // updateTodo(_todoList[index]);
                                 // checkbool(_todoList[index]);
-                                //  updateTodo(_todoList[index]);
+                                // if(completed==true){
+                                // updateTodo(_todoList[index]);
                                 // checkbool(_todoList[index]);
+                                // }
+                               
                                 print("*******มีค่า trueอยู่ *********");
                                }
-
                         if(w==false){
                             print("*******มีค่า false อยู่ *********");
                         }
-                        
+
                         
                             }); 
                           
                           });
 
 
-                      // if (completed =!true) {
+                      
                         // updateTodo(_todoList[index]);
                         // checkbool(_todoList[index]);
-                      // }
+                      
                       // check(_todoList[index]);
 
                     }),
