@@ -180,7 +180,7 @@ class _DashboardState extends State<Dashboard>
                   Container(
                     child: Container(
                       width: 350,
-                      height: 20,
+                      height: 25,
                     ),
                   ),
 

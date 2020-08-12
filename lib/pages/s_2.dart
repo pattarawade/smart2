@@ -271,12 +271,8 @@ class _TestpageState extends State<S2> {
                 trailing: 
                  IconButton(
                     icon: (completed)
-                        ? Icon(
-                            Icons.brightness_2 ,
-                            color: Colors.yellow[300],
-                            size: 30.0,
-                          )
-                        : Icon(Icons.brightness_2, color: Colors.black, size: 30.0),
+                        ? Icon(Icons.power_settings_new ,color: Colors.green,size: 30.0,)
+                        : Icon(Icons.power_settings_new, color: Colors.red, size: 30.0),
                     onPressed: () {
                        databaseReference.once().then((DataSnapshot dataSnapshop) {
                           Map<dynamic, dynamic> s = dataSnapshop.value;
