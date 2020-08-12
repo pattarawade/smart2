@@ -288,7 +288,7 @@ class _TestpageState extends State<S2> {
                             //     print("1");
                             //   }
                             
-                      if (w ==true) {
+                          if (w ==true) {
                                 // updateTodo(_todoList[index]);
                                 // checkbool(_todoList[index]);
                                 // if(completed==true){
