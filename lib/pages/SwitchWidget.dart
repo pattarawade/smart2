@@ -48,6 +48,7 @@ class SwitchWidgetClass extends State {
     });
 
   }
+  
    void create_fan(){
 
     databaseReference.child("data/control_fan_update").set({

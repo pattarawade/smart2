@@ -31,13 +31,22 @@ class _TestpageState extends State<S2> {
 
   Query _todoQuery;
 
-  bool buttonState = true;
-  void _buttonChange() {
-    setState(() {
-      buttonState = !buttonState;
-    });
-  }
+  
+    int off=0;
+    int on=1;
+    
+    bool switchControl = false;
+    var textHolder = 'Switch is OFF light';
 
+    bool switchControl2 = false ;
+    var textHolder2 = 'Switch is OFF fan';
+
+    bool switchControl3 = false;
+    var textHolder3 = 'Switch is OFF pump';
+
+    bool a ;
+
+    final databaseReference = FirebaseDatabase.instance.reference();
 //  final DatabaseReference itemRef = FirebaseDatabase.instance.reference().child("item");
 
   @override
@@ -136,17 +145,7 @@ class _TestpageState extends State<S2> {
        });
   }
 
-  updateTodo2(Item todo) {
-    //Toggle completed
-    // todo.completed = !todo.completed;
-    // if (todo != null) {
-      // _database.reference().child("item").child(todo.key).set(todo.toJson());
-       _database.reference().child("item").child(todo.key).equalTo("fales").once();
-
-      // _database.orderByChild("age").equalTo("4").once();
-      //  updatepump();
-    // }
-  }
+ 
   check(Item t){
   bool completed=t.completed;
   print(completed);
@@ -180,8 +179,52 @@ class _TestpageState extends State<S2> {
 
       print(dateTimenow);
 
+  }
+ void getData(){
+    databaseReference.once().then((DataSnapshot snapshot) {
+      print('Data : ${snapshot.value}');
+    });
+  }
+
+  void createlight(){
+    databaseReference.child("data/control_light_update").set({
+      // 'title': 'Mastering EJB',
+      'light':off  //off
+    });   
+  }
+
+  void updatelight(){
+    databaseReference.child('data/control_light_update').update({
+      'light':on  //on 1
+    });
 
   }
+   void create_fan(){
+
+    databaseReference.child("data/control_fan_update").set({
+      // 'title': 'Mastering EJB',
+      'fan':off  //off
+    });   
+  }
+  void update_fan(){
+    databaseReference.child('data/control_fan_update').update({
+      'fan':on  //on 1
+    });
+
+  }
+  void createpump(){
+    databaseReference.child("data/control_pump_update").set({
+      'pump':off  //off
+    });   
+  }
+  void updatepump(){
+    databaseReference.child('data/control_pump_update').update({
+      'pump':on  //on 1
+    });
+
+  }
+
+  
 
   deleteTodo(String todoId, int index) {
     _database.reference().child("item").child(todoId).remove().then((_) {
@@ -289,7 +332,7 @@ class _TestpageState extends State<S2> {
                                
                                 print("*******มีค่า trueอยู่ *********");
                                }
-                       else if(w ==false){
+                        else if(w ==false){
                                 checkbool(_todoList[index]);
                                 updateTodo(_todoList[index]);
                             print("*******มีค่า false อยู่ *********");
