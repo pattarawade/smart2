@@ -514,7 +514,8 @@ class _DashboardState extends State<Dashboard>
               )
             : Text(
                 'Loading...',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 30,),
               ),
       )),
     );

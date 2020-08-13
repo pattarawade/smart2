@@ -277,38 +277,27 @@ class _TestpageState extends State<S2> {
                        databaseReference.once().then((DataSnapshot dataSnapshop) {
                           Map<dynamic, dynamic> s = dataSnapshop.value;
                           s. forEach((key,s){
-                            // print(values [ 'name']);
                             bool w= s [ 'completed'];
                             print(w);
-                            // if(w==true){
-                            //     print("1");
-                            //   }
                             
-                          if (w ==true) {
-                                // updateTodo(_todoList[index]);
-                                // checkbool(_todoList[index]);
+                          if (completed ==true) {
                                 // if(completed==true){
-                                // updateTodo(_todoList[index]);
-                                // checkbool(_todoList[index]);
+                                 checkbool(_todoList[index]);
+                                 updateTodo(_todoList[index]);
+                                
                                 // }
                                
                                 print("*******มีค่า trueอยู่ *********");
                                }
-                        if(w==false){
+                       else if(w ==false){
+                                checkbool(_todoList[index]);
+                                updateTodo(_todoList[index]);
                             print("*******มีค่า false อยู่ *********");
-                        }
-// 666666666666666666666666666666666666666666666666666666666666666666666666
-                        
+                        }         
                             }); 
                           
-                          });
-
-
-                      
-                        // updateTodo(_todoList[index]);
-                        // checkbool(_todoList[index]);
-                      
-                      // check(_todoList[index]);
+                          }
+                          );                
 
                     }),
                     
@@ -319,7 +308,7 @@ class _TestpageState extends State<S2> {
     } else {
       return Center(
           child: Text(
-        "Welcome. Your list is empty",
+        "Loading...'",
         textAlign: TextAlign.center,
         style: TextStyle(fontSize: 30.0),
       ));
