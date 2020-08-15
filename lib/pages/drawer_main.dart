@@ -3,7 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 
 // Added .dart files
 import 'package:connectfirebase/screens/home.dart';
-import 'package:connectfirebase/screens/item.dart';
+import 'package:connectfirebase/screens/item_2.dart';
 
 class Setcontrol extends StatelessWidget {
 

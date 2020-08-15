@@ -29,6 +29,8 @@ class _TestpageState extends State<S2> {
   StreamSubscription<Event> _onTodoAddedSubscription;
   StreamSubscription<Event> _onTodoChangedSubscription;
 
+  
+
   Query _todoQuery;
 
   
@@ -166,7 +168,7 @@ class _TestpageState extends State<S2> {
     // String userId=todo.userId;
       var newHour = 1;
       time = time.toLocal();
-      time = new DateTime(time.year, time.month, time.day, newHour, time.minute, time.second, time.millisecond, time.microsecond);
+      time = new DateTime(time.year, time.month, time.day, time.hour, time.minute, time.second, time.millisecond, time.microsecond);
       print(time);
       print("//////////////////////////////////////////////////////////////////////////////////");
       print(key);
@@ -320,7 +322,11 @@ class _TestpageState extends State<S2> {
                        databaseReference.once().then((DataSnapshot dataSnapshop) {
                           Map<dynamic, dynamic> s = dataSnapshop.value;
                           s. forEach((key,s){
-                            bool w= s [ 'completed'];
+                            // bool w= s [ 'completed'];
+                             bool w= true;
+                             if(s [ 'completed']== 'false'){
+                                w= false;
+                             }
                             print(w);
                             
                           if (completed ==true) {

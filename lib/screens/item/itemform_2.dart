@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../models/Item.dart';
+import '../../models/Item_2.dart';
 import '../../component/datetime_2.dart';
 import 'package:intl/intl.dart';
 
 class ItemForm extends StatefulWidget {
-  // static String pageTitle = "Item";
+  static String pageTitle = "Item";
   final Item item;
 
   ItemForm.add(Item item) : item = item;
@@ -21,18 +21,19 @@ class ItemForm extends StatefulWidget {
 class ItemFormState extends State<ItemForm> {
   Item _item;
   
-  DateTime _fromDate = new DateTime.now();
-  // var  _fromDate = new DateTime.fromMicrosecondsSinceEpoch();
-  // DateTime.now().toUtc().millisecondsSinceEpoch;
-  TimeOfDay _fromTime = const TimeOfDay(hour: 00, minute: 00);
+  //DateTime _fromDate = new DateTime.now();
+  TimeOfDay _fromTime = const TimeOfDay(hour: 7, minute: 28);
+  var _dt = '2020-07-20 20:18:04Z';
+  // var ab ="45";
+  var  _fromDate = new DateFormat("yyyy-MM-dd hh:mm:ss").parse(_dt);
+  // var _fromDate = DateTime.parse(ab);  // 8:18pm
+  String date = DateFormat("yyyy-MM-dd hh:mm:ss").format(DateTime.now());
 
-
-  DateTime _fromDate2 = new DateTime.now();
-  TimeOfDay _fromTime2 = const TimeOfDay(hour: 00, minute: 00);
-
-  
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+
+
+
 
   ItemFormState(Item item) {
     this._item = item;
@@ -54,25 +55,24 @@ class ItemFormState extends State<ItemForm> {
     } else {
       form.save();
       Navigator.of(context).pop(new Item.fromCode(
-      _item.name, _item.description, _fromDate,_fromDate2, _item.price,false));
+          _item.name, _item.description, _fromDate,_item.price));
       showInSnackBar('Added new item.');
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
         key: _scaffoldKey,
         // appBar: new AppBar(
-          // title: new Text("Item"),
-
-          // actions: <Widget>[
-          //   new IconButton(
-          //       icon: const Icon(Icons.send),
-          //       onPressed: () {
-          //         _handleSubmitted(context);
-          //       })
-          // ],
-
+        //   title: new Text("Item"),
+        //   actions: <Widget>[
+        //     new IconButton(
+        //         icon: const Icon(Icons.send),
+        //         onPressed: () {
+        //           _handleSubmitted(context);
+        //         })
+        //   ],
         // ),
         body: new SafeArea(
             top: false,
@@ -80,9 +80,7 @@ class ItemFormState extends State<ItemForm> {
             child: new Form(
               key: _formKey,
               child: new ListView(
-               
                 children: <Widget>[
-
                   new ListTile(
                     leading: const Icon(Icons.info),
                     title: new TextFormField(
@@ -111,7 +109,6 @@ class ItemFormState extends State<ItemForm> {
                       selectedTime: _fromTime,
                       selectDate: (DateTime date) {
                         setState(() {
-                          // var date = new DateTime.fromMicrosecondsSinceEpoch(timestamp);
                           _fromDate = date;
                         });
                       },
@@ -122,31 +119,6 @@ class ItemFormState extends State<ItemForm> {
                       },
                     ),
                   ),
-
-
-                  new ListTile(
-                    leading: const Icon(Icons.calendar_today),
-                    title: new DateTimePicker(
-                      selectedDate: _fromDate2,
-                      selectedTime: _fromTime2,
-    
-                      selectDate: (DateTime date) {
-                        setState(() {
-                          
-                          _fromDate2 = date;
-                        });
-                      },
-
-                      selectTime: (TimeOfDay time) {
-                        setState(() {
-                          _fromTime2 = time;
-                        });
-                      },
-                    ),
-                  ),
-
-         
-
                   new ListTile(
                     leading: const Icon(Icons.info),
                     title: new TextFormField(
@@ -159,29 +131,13 @@ class ItemFormState extends State<ItemForm> {
                       keyboardType: TextInputType.number,
                     ),
                   ),
-                  
-                  new IconButton(
+                   new IconButton(
                     icon: const Icon(Icons.check_circle,size: 60.0,color: Colors.green),
                     onPressed: () {
                       _handleSubmitted(context);
                     }),
-
-                    new IconButton(
-                    icon: const Icon(Icons.check_circle,size: 60.0,color: Colors.red),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    }),
-                    
-                  // new FlatButton(
-                  // child: const Text('Cancel'),
-                  // onPressed: () {
-                  //   Navigator.pop(context);
-                  // }), 
-                  
                 ],
               ),
-            ))
-            
-            );
+            )));
   }
 }

@@ -147,14 +147,11 @@ class SwitchWidgetClass extends State {
         print('Switch is OFF pump');
         // Put your code here which you want to execute on Switch OFF event.
       }
-  }
-
+    }
     @override
     Widget build(BuildContext context) {
        getData();
-      return new Scaffold(
-
-              
+      return new Scaffold(       
       body: new Container(
         padding: new EdgeInsets.all(30.0),
         

@@ -4,14 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 /// A component to display date and time input field
-/// 
 class DateTimePicker extends StatelessWidget {
   const DateTimePicker({
     Key key,
     this.labelText,
     this.selectedDate,
     this.selectedTime,
-    
+
     this.selectDate,
     this.selectTime
   }) : super(key: key);
@@ -22,10 +21,7 @@ class DateTimePicker extends StatelessWidget {
   final ValueChanged<DateTime> selectDate;
   final ValueChanged<TimeOfDay> selectTime;
 
-  // final DateTime selectedDate2;
-  // final TimeOfDay selectedTime2;
-  // final ValueChanged<DateTime> selectDate2;
-  // final ValueChanged<TimeOfDay> selectTime2;
+  
 
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -50,25 +46,14 @@ class DateTimePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print("Inside dateTime build");
-    // print(selectedDate == null);
-    // print(selectedDate);
-    print(new DateFormat.yMd().add_jm().format(selectedDate));
-      // String a =new DateFormat.yMd().add_jm().format(selectedDate);
-      // print(a);
-    //  print(new DateFormat.Hm().format(selectedDate));
+    print(selectedDate == null);
+    print(selectedDate);
+    print(new DateFormat.yMMMd().format(selectedDate));
 
-  final DateTime now = DateTime.now();
-  final DateFormat formatter = DateFormat('yyyy-MM-dd HH:mm:ss');
-  final String formatted = formatter.format(now);
-  print("/////////////////////////////////////////////////////////");
-  print(formatted); // something like 2013-04-20
-  print("/////////////////////////////////////////////////////////");
 
-  
     return new Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: <Widget>[
-
         new Expanded(
           flex: 4,
           child: new _InputDropdown(
@@ -78,7 +63,6 @@ class DateTimePicker extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 12.0),
-
         new Expanded(
           flex: 3,
           child: new _InputDropdown(
@@ -121,7 +105,7 @@ class _InputDropdown extends StatelessWidget {
           children: <Widget>[
             new Text(valueText, style: valueStyle),
             new Icon(Icons.arrow_drop_down,
-              color: Theme.of(context).brightness == Brightness.light ? Colors.pink.shade700 : Colors.white70
+              color: Theme.of(context).brightness == Brightness.light ? Colors.grey.shade700 : Colors.white70
             ),
           ],
         ),
