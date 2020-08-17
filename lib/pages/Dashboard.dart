@@ -106,19 +106,21 @@ class _DashboardState extends State<Dashboard>
       double humidity = snapshot.value['Humidity'] + 0.0;
       double soil = snapshot.value['Soilmoisture'] + 0.0;
       double water = snapshot.value['waterlevel'] + 0.0;
+      if (water <= 15.0) {
+        scheduleNotification();
+      }
 
       isLoading = true;
       _DashboardInit(temp, humidity, soil, water);
     });
     super.initState();
-    
   }
 
   _printLatestValue() {
     print("Second text field: ${myController.text}");
   }
 
-  Future<void> scheduleNotification(Realtimedta noti) async {
+  Future<void> scheduleNotification() async {
     var scheduleNotificationDateTime = DateTime.now();
     var androidChannelSpecifics = AndroidNotificationDetails(
       'CHANNEL_ID 1',
@@ -515,7 +517,9 @@ class _DashboardState extends State<Dashboard>
             : Text(
                 'Loading...',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 30,),
+                style: TextStyle(
+                  fontSize: 30,
+                ),
               ),
       )),
     );
