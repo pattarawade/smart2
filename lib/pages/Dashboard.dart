@@ -39,13 +39,14 @@ class _DashboardState extends State<Dashboard>
   Animation<double> humidityAnimation;
   Animation<double> soilAnimation;
   Animation<double> waterAnimation;
+  Animation<double> luxAnimation;
 
-  _DashboardInit(double temp, double humid, double soil, double water) {
+  _DashboardInit(double temp, double humid, double soil, double water,double lux) {
     progressController = AnimationController(
         vsync: this, duration: Duration(milliseconds: 5000)); //5s
 
     tempAnimation =
-        Tween<double>(begin: -50, end: temp).animate(progressController)
+        Tween<double>(begin: -20, end: temp).animate(progressController)
           ..addListener(() {
             setState(() {
               // print(tempAnimation.value);
@@ -60,13 +61,18 @@ class _DashboardState extends State<Dashboard>
           });
 
     soilAnimation =
-        Tween<double>(begin: -50, end: soil).animate(progressController)
+        Tween<double>(begin: 0, end: soil).animate(progressController)
           ..addListener(() {
             setState(() {});
           });
 
     waterAnimation =
         Tween<double>(begin: 0, end: water).animate(progressController)
+          ..addListener(() {
+            setState(() {});
+          });
+    luxAnimation =
+        Tween<double>(begin: 0, end: lux).animate(progressController)
           ..addListener(() {
             setState(() {});
           });
@@ -106,12 +112,13 @@ class _DashboardState extends State<Dashboard>
       double humidity = snapshot.value['Humidity'] + 0.0;
       double soil = snapshot.value['Soilmoisture'] + 0.0;
       double water = snapshot.value['waterlevel'] + 0.0;
+      double lux = snapshot.value['lux'] + 0.0;
       if (water <= 40.0) {
         scheduleNotification();
       }
 
       isLoading = true;
-      _DashboardInit(temp, humidity, soil, water);
+      _DashboardInit(temp, humidity, soil, water,lux);
     });
     super.initState();
   }
@@ -380,6 +387,58 @@ class _DashboardState extends State<Dashboard>
                                       ),
                                       Text(
                                         '%',
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                    Container(
+                    child: Container(
+                      width: 350,
+                      height: 240,
+                      child: Card(
+                        color: Colors.teal[100],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        child: new Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            CustomPaint(
+                              foregroundPainter: CircleProgress(
+                                  humidityAnimation.value, false),
+                              child: Container(
+                                width: 200,
+                                height: 200,
+                                child: Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Text(
+                                        'Light value',
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        '${luxAnimation.value.toDouble().toStringAsFixed(1)}',
+                                        style: TextStyle(
+                                            fontSize: 50,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        'lux',
                                         style: TextStyle(
                                             fontSize: 20,
                                             fontWeight: FontWeight.bold),

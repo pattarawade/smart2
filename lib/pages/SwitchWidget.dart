@@ -49,6 +49,7 @@ class SwitchWidgetClass extends State {
 
   }
   
+  
    void create_fan(){
 
     databaseReference.child("data/control_fan_update").set({
@@ -62,6 +63,20 @@ class SwitchWidgetClass extends State {
     });
 
   }
+    void create_fanpum(){
+    databaseReference.child("data/control_fanpum_update").set({
+      'fan_pum':off  //off
+    });   
+  }
+  void update_fanpum(){
+    databaseReference.child('data/control_fanpum_update').update({
+      'fan_pum':on  //on 1
+    });
+
+  }
+
+
+
   void createpump(){
     databaseReference.child("data/control_pump_update").set({
       'pump':off  //off
@@ -104,8 +119,10 @@ class SwitchWidgetClass extends State {
       {
         setState(() {
           update_fan();
+          // update_fanpum();
           switchControl2 = true;
           textHolder2 = 'Switch is ON fan';
+          update_fanpum();
         });
         print('Switch is ON fan');
         // Put your code here which you want to execute on Switch ON event.
@@ -114,8 +131,10 @@ class SwitchWidgetClass extends State {
       {
         setState(() {
           create_fan();
+          // create_fanpum();
           switchControl2 = false;
            textHolder2 = 'Switch is OFF fan';
+           create_fanpum();
         });
         print('Switch is OFF fan');
         // Put your code here which you want to execute on Switch OFF event.
