@@ -319,27 +319,25 @@ class _TestpageState extends State<S2> {
                         ? Icon(Icons.power_settings_new ,color: Colors.green,size: 30.0,)
                         : Icon(Icons.power_settings_new, color: Colors.red, size: 30.0),
                     onPressed: () {
-                       databaseReference.once().then((DataSnapshot dataSnapshop) {
+                       databaseReference.child('item').once().then((DataSnapshot dataSnapshop) {
                           Map<dynamic, dynamic> s = dataSnapshop.value;
                           s. forEach((key,s){
+                            print(s['completed']);
                             // bool w= s [ 'completed'];
-                             bool w= true;
-                             if(s [ 'completed']== 'false'){
-                                w= false;
-                             }
-                            print(w);
+                             ///bool w= true;
+                            //  if(s [ 'completed']== 'false'){
+                            //     w= false;
+                            //  }
+                            //print(w);
                             
-                          if (completed ==true) {
-                                // if(completed==true){
-                                 checkbool(_todoList[index]);
+                          if (s == 'false') {
+                                 //checkbool(_todoList[index]);
                                  updateTodo(_todoList[index]);
-                                
-                                // }
-                               
                                 print("*******มีค่า trueอยู่ *********");
                                }
-                        else if(w ==false){
-                                checkbool(_todoList[index]);
+
+                          else{
+                                // checkbool(_todoList[index]);
                                 updateTodo(_todoList[index]);
                             print("*******มีค่า false อยู่ *********");
                         }         

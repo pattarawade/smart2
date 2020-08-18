@@ -25,7 +25,7 @@ class ItemFormState extends State<ItemForm> {
   TimeOfDay _fromTime = const TimeOfDay(hour: 7, minute: 28);
   var _dt = '2020-07-20 20:18:04Z';
   // var ab ="45";
-  var  _fromDate = new DateFormat("yyyy-MM-dd hh:mm:ss").parse(_dt);
+  //var  _fromDate = new DateFormat("yyyy-MM-dd hh:mm:ss").parse(_dt);
   // var _fromDate = DateTime.parse(ab);  // 8:18pm
   String date = DateFormat("yyyy-MM-dd hh:mm:ss").format(DateTime.now());
 
@@ -39,7 +39,7 @@ class ItemFormState extends State<ItemForm> {
     this._item = item;
 
     if (item.dateTime != null) {
-      _fromDate = item.dateTime;
+      //_fromDate = item.dateTime;
     }
   }
 
@@ -54,9 +54,9 @@ class ItemFormState extends State<ItemForm> {
       showInSnackBar('Please fix the errors in red before submitting.');
     } else {
       form.save();
-      Navigator.of(context).pop(new Item.fromCode(
-          _item.name, _item.description, _fromDate,_item.price));
-      showInSnackBar('Added new item.');
+      // Navigator.of(context).pop(new Item.fromCode(
+      //    //_item.name, _item.description, _fromDate,_item.price));
+      // //showInSnackBar('Added new item.');
     }
   }
 
@@ -105,11 +105,11 @@ class ItemFormState extends State<ItemForm> {
                   new ListTile(
                     leading: const Icon(Icons.calendar_today),
                     title: new DateTimePicker(
-                      selectedDate: _fromDate,
+                      //selectedDate: _fromDate,
                       selectedTime: _fromTime,
                       selectDate: (DateTime date) {
                         setState(() {
-                          _fromDate = date;
+                          //_fromDate = date;
                         });
                       },
                       selectTime: (TimeOfDay time) {
