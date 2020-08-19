@@ -1,4 +1,5 @@
 import 'package:connectfirebase/pages/b.dart';
+import 'package:connectfirebase/pages/listview_setup.dart';
 import 'package:connectfirebase/pages/onoff.dart';
 import 'package:flutter/material.dart';
 import 'package:connectfirebase/services/authentication.dart';
@@ -283,6 +284,29 @@ Widget menuDashboard() {
       },
     );
   }
+
+  
+    // ignore: non_constant_identifier_names
+    Widget listview_setup() {
+    return ListTile(
+      leading: Icon(
+        Icons.settings_backup_restore_outlined,
+        size: 36.0,
+        color: Colors.teal,
+      ),
+      title: Text(
+        'Setup',
+        style: TextStyle(fontSize: 18.0),
+      ),
+      onTap: () {
+        setState(() {
+          myWidget = ListViewNote();
+          Navigator.of(context).pop();
+        });
+      },
+    );
+  }
+  
   
   
     Widget headMenu() {
@@ -353,7 +377,10 @@ Widget menuDashboard() {
           s2(),
           myDivider(),
 
-           s3(),
+          //  s3(),
+          // myDivider(),
+
+           listview_setup(),
           myDivider(),
 
           //menuQRcode(),
