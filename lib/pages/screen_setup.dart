@@ -25,6 +25,8 @@ class _NoteScreenState extends State<NoteScreen> {
   TextEditingController _lightControllerOff;
   TextEditingController _fanControllerOff;
   TextEditingController _waterController2;
+  // ignore: unused_field
+  bool _completedController = false;
 
   @override
   void initState() {
@@ -211,42 +213,15 @@ class _NoteScreenState extends State<NoteScreen> {
             //   items: ,
             // ),
             ligthTime(),
-
+            Padding(padding: new EdgeInsets.all(5.0)),
             Padding(padding: new EdgeInsets.all(5.0)),
 
-            // TextField(
-            //   controller: _fanControllerOn,
-            //   decoration: InputDecoration(
-            //       border: OutlineInputBorder(), labelText: 'fan'),
-            // ),
-            Padding(padding: new EdgeInsets.all(5.0)),
             fanTime(),
             Padding(padding: new EdgeInsets.all(5.0)),
-            // TextField(
-            //   controller: _waterController1,
-            //   decoration: InputDecoration(
-            //       border: OutlineInputBorder(), labelText: 'water'),
-            // ),
-
             Padding(padding: new EdgeInsets.all(5.0)),
+
             waterTime(),
             Padding(padding: new EdgeInsets.all(5.0)),
-
-            // DropdownButton(
-            // hint: Text('-'), // Not necessary for Option 1
-            // value: _selectedLocation,
-            // onChanged: (newValue) {
-            //   setState(() {
-            //     _selectedLocation = newValue;
-            //   });
-            // },
-            // items: _locations.map((location) {
-            //   return DropdownMenuItem(
-            //     child: new Text(location),
-            //     value: location,
-            //   );
-            // }).toList(), ),
-
             Padding(padding: new EdgeInsets.all(5.0)),
 
             OutlineButton(
@@ -261,7 +236,9 @@ class _NoteScreenState extends State<NoteScreen> {
                     'water1': _waterController1.text,
                     'lightOff': _lightControllerOff.text,
                     'fanOff': _fanControllerOff.text,
-                    'water2': _waterController2.text
+                    'water2': _waterController2.text,
+                    'completed':_completedController,
+
                   }).then((_) {
                     Navigator.pop(context);
                   });
@@ -273,7 +250,8 @@ class _NoteScreenState extends State<NoteScreen> {
                     'water1': _waterController1.text,
                     'lightOff': _lightControllerOff.text,
                     'fanOff': _fanControllerOff.text,
-                    'water2': _waterController2.text
+                    'water2': _waterController2.text,
+                    'completed':_completedController,
                   }).then((_) {
                     Navigator.pop(context);
                   });

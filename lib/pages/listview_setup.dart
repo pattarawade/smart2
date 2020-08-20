@@ -23,8 +23,7 @@ class _ListViewNoteState extends State<ListViewNote> {
     items = new List();
 
     _onNoteAddedSubscription = notesReference.onChildAdded.listen(_onNoteAdded);
-    _onNoteChangedSubscription =
-        notesReference.onChildChanged.listen(_onNoteUpdated);
+    _onNoteChangedSubscription = notesReference.onChildChanged.listen(_onNoteUpdated);
   }
 
   @override
@@ -53,12 +52,12 @@ class _ListViewNoteState extends State<ListViewNote> {
                         color: Colors.black,
                       ),
                     ),
-                    // subtitle: Text(
-                    //   '${items[position].light}',
-                    //   style: new TextStyle(
-                    //     fontSize: 18.0,
-                    //   ),
-                    // ),
+                    subtitle: Text(
+                      '${items[position].completed}',
+                      style: new TextStyle(
+                        fontSize: 18.0,
+                      ),
+                    ),
                     leading: Column(
                       children: <Widget>[
                         IconButton(
@@ -116,7 +115,7 @@ class _ListViewNoteState extends State<ListViewNote> {
       context,
       MaterialPageRoute(
           builder: (context) =>
-              NoteScreen(Setup(null, '', '', '', '', '', '', ''))),
+              NoteScreen(Setup(null, '', '', '', '', '', '', '', false,))),
     );
   }
 }

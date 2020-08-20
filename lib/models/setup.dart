@@ -9,10 +9,10 @@ class Setup {
   String _fan1;
   String _water0;
   String _water1;
+  bool _completed = false ;
 
   Setup(this._id, this._title, this._light0, this._light1, this._fan0,
-      this._fan1, this._water0, this._water1);
-
+      this._fan1, this._water0, this._water1,this._completed);
   Setup.map(dynamic obj) {
     this._id = obj['id'];
     this._title = obj['title'];
@@ -22,6 +22,7 @@ class Setup {
     this._fan1 = obj['fanOff'];
     this._water0 = obj['water1'];
     this._water1 = obj['water2'];
+    this._completed = obj['completed'];
   }
 
   String get id => _id;
@@ -32,6 +33,7 @@ class Setup {
   String get fan1 => _fan1;
   String get water0 => _water0;
   String get water1 => _water1;
+  bool get completed => _completed;
 
   Setup.fromSnapshot(DataSnapshot snapshot) {
     _id = snapshot.key;
@@ -42,5 +44,6 @@ class Setup {
     _fan1 = snapshot.value['fanOff'];
     _water0 = snapshot.value['water1'];
     _water1 = snapshot.value['water2'];
+   _completed = snapshot.value["completed"];
   }
 }
