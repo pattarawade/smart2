@@ -113,7 +113,7 @@ class _DashboardState extends State<Dashboard>
       double soil = snapshot.value['Soilmoisture'] + 0.0;
       double water = snapshot.value['waterlevel'] + 0.0;
       double lux = snapshot.value['lux'] + 0.0;
-      if (water <= 40.0) {
+      if (water <= 15.0) {
         scheduleNotification();
       }
 

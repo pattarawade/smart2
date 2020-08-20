@@ -290,7 +290,7 @@ Widget menuDashboard() {
     Widget listview_setup() {
     return ListTile(
       leading: Icon(
-        Icons.settings_backup_restore_outlined,
+        Icons.settings,
         size: 36.0,
         color: Colors.teal,
       ),
