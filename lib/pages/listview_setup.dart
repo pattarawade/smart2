@@ -3,6 +3,7 @@ import 'package:connectfirebase/models/setup.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:connectfirebase/pages/screen_setup.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 
 class ListViewNote extends StatefulWidget {
   @override
@@ -16,6 +17,8 @@ class _ListViewNoteState extends State<ListViewNote> {
   StreamSubscription<Event> _onNoteAddedSubscription;
   StreamSubscription<Event> _onNoteChangedSubscription;
 
+  bool _completedController;
+
   @override
   void initState() {
     super.initState();
@@ -23,7 +26,8 @@ class _ListViewNoteState extends State<ListViewNote> {
     items = new List();
 
     _onNoteAddedSubscription = notesReference.onChildAdded.listen(_onNoteAdded);
-    _onNoteChangedSubscription = notesReference.onChildChanged.listen(_onNoteUpdated);
+    _onNoteChangedSubscription =
+        notesReference.onChildChanged.listen(_onNoteUpdated);
   }
 
   @override
@@ -67,6 +71,34 @@ class _ListViewNoteState extends State<ListViewNote> {
                       ],
                     ),
                     onTap: () => _navigateToNote(context, items[position]),
+                    trailing: FlutterSwitch(
+                      showOnOff: true,
+                      height: 30.0,
+                      width: 60.0,
+                      padding: 6.0,
+                      toggleSize: 20.0,
+                      borderRadius: 15.0,
+                      value: items[position].completed,
+                      activeColor: Colors.green,
+                      activeText: 'ON',
+                      inactiveColor: Colors.red,
+                      inactiveText: 'OFF',
+                      valueFontSize: 10.0,
+                      onToggle: (value) {
+                        _completedController = value;
+
+                        switch (_completedController) {
+                          case true:
+                            {
+                              update_fanOn(context, items[position], position);
+                            }
+
+                            break;
+                          default:
+                            update_fanoff(context, items[position], position);
+                        }
+                      },
+                    ),
                   ),
                 ],
               );
@@ -110,12 +142,33 @@ class _ListViewNoteState extends State<ListViewNote> {
     );
   }
 
+  void update_fanOn(BuildContext context, Setup note, int position) async {
+    await notesReference.child(note.id).update({
+      'completed': true, //on 1
+    });
+  }
+
+  void update_fanoff(BuildContext context, Setup note, int position) async {
+    await notesReference.child(note.id).update({
+      'completed': false, //off
+    });
+  }
+
   void _createNewNote(BuildContext context) async {
     await Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) =>
-              NoteScreen(Setup(null, '', '', '', '', '', '', '', false,))),
+          builder: (context) => NoteScreen(Setup(
+                null,
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                false,
+              ))),
     );
   }
 }
