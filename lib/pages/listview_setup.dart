@@ -62,14 +62,14 @@ class _ListViewNoteState extends State<ListViewNote> {
                         fontSize: 18.0,
                       ),
                     ),
-                    leading: Column(
-                      children: <Widget>[
-                        IconButton(
-                            icon: const Icon(Icons.remove_circle_outline),
-                            onPressed: () => _deleteNote(
-                                context, items[position], position)),
-                      ],
-                    ),
+                    // leading: Column(
+                    //   children: <Widget>[
+                    //     IconButton(
+                    //         icon: const Icon(Icons.remove_circle_outline),
+                    //         onPressed: () => _deleteNote(
+                    //             context, items[position], position)),
+                    //   ],
+                    // ),
                     onTap: () => _navigateToNote(context, items[position]),
                     trailing: FlutterSwitch(
                       showOnOff: true,
