@@ -295,7 +295,7 @@ Widget menuDashboard() {
         color: Colors.teal,
       ),
       title: Text(
-        'Setup',
+        'Setting Control',
         style: TextStyle(fontSize: 18.0),
       ),
       onTap: () {
@@ -362,8 +362,11 @@ Widget menuDashboard() {
           menub1(),
           myDivider(),
 
-          menutime(),
+          // menutime(),
+          // myDivider(),
+          listview_setup(),
           myDivider(),
+
            
           //menuonoff(),
           //myDivider(),
@@ -374,15 +377,13 @@ Widget menuDashboard() {
          // a(),
           //myDivider(),
           
-          s2(),
-          myDivider(),
+          // s2(),
+          // myDivider(),
 
           //  s3(),
           // myDivider(),
 
-           listview_setup(),
-          myDivider(),
-
+  
           //menuQRcode(),
          // myDivider(),
          // logout(),

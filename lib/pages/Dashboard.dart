@@ -432,7 +432,7 @@ class _DashboardState extends State<Dashboard>
                                         ),
                                       ),
                                       Text(
-                                        '${luxAnimation.value.toDouble().toStringAsFixed(1)}',
+                                        '${luxAnimation.value.toInt()}',
                                         style: TextStyle(
                                             fontSize: 50,
                                             fontWeight: FontWeight.bold),

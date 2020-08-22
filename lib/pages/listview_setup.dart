@@ -86,7 +86,6 @@ class _ListViewNoteState extends State<ListViewNote> {
                       valueFontSize: 10.0,
                       onToggle: (value) {
                         _completedController = value;
-
                         switch (_completedController) {
                           case true:
                             {
@@ -96,6 +95,7 @@ class _ListViewNoteState extends State<ListViewNote> {
                             break;
                           default:
                             update_fanoff(context, items[position], position);
+
                         }
                       },
                     ),

@@ -9,7 +9,7 @@ class Setup {
   String _fan1;
   String _water0;
   String _water1;
-  bool _completed = false ;
+  bool _completed ;
 
   Setup(this._id, this._title, this._light0, this._light1, this._fan0,
       this._fan1, this._water0, this._water1,this._completed);
@@ -33,7 +33,7 @@ class Setup {
   String get fan1 => _fan1;
   String get water0 => _water0;
   String get water1 => _water1;
-  bool get completed => _completed;
+  bool   get completed => _completed;
 
   Setup.fromSnapshot(DataSnapshot snapshot) {
     _id = snapshot.key;
