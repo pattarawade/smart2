@@ -18,6 +18,7 @@ class _ListViewNoteState extends State<ListViewNote> {
   StreamSubscription<Event> _onNoteChangedSubscription;
 
   bool _completedController;
+  bool onSwi;
 
   @override
   void initState() {
@@ -72,7 +73,7 @@ class _ListViewNoteState extends State<ListViewNote> {
                     // ),
                     onTap: () => _navigateToNote(context, items[position]),
                     trailing: FlutterSwitch(
-                      showOnOff: true,
+                      showOnOff: onSwi,
                       height: 30.0,
                       width: 60.0,
                       padding: 6.0,
@@ -85,18 +86,25 @@ class _ListViewNoteState extends State<ListViewNote> {
                       inactiveText: 'OFF',
                       valueFontSize: 10.0,
                       onToggle: (value) {
-                        _completedController = value;
-                        switch (_completedController) {
-                          case true:
-                            {
-                              update_fanOn(context, items[position], position);
-                            }
+                        setState(() {
+                        
+                          switch (_completedController) {
+                            case true:
+                              {
+                                onSwi = true;
+                                update_fanOn(
+                                    context, items[position], position);
+                              }
 
-                            break;
-                          default:
-                            update_fanoff(context, items[position], position);
-
-                        }
+                              break;
+                            default:
+                              {
+                                onSwi = false;
+                                update_fanoff(
+                                    context, items[position], position);
+                              }
+                          }
+                        });
                       },
                     ),
                   ),

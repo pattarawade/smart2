@@ -1,15 +1,16 @@
 import 'dart:async';
 import 'dart:ffi';
+import 'package:connectfirebase/models/settingmodel.dart';
+
+import 'package:connectfirebase/pages/screen_setup.dart';
+import 'package:connectfirebase/pages/setting_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:connectfirebase/models/realtime.dart';
 
-import '../models/realtime.dart';
 import 'CircleProgress.dart';
 // import 'main.dart';
 
@@ -23,6 +24,7 @@ class _DashboardState extends State<Dashboard>
   bool isLoading = false;
   final GoogleSignIn googleSignIn = GoogleSignIn();
   final myController = TextEditingController();
+  final titleSet = TextEditingController();
 
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
@@ -41,7 +43,11 @@ class _DashboardState extends State<Dashboard>
   Animation<double> waterAnimation;
   Animation<double> luxAnimation;
 
-  _DashboardInit(double temp, double humid, double soil, double water,double lux) {
+  List<Setting> items;
+  StreamSubscription<Event> _onNoteChangedSubscription;
+
+  _DashboardInit(
+      double temp, double humid, double soil, double water, double lux) {
     progressController = AnimationController(
         vsync: this, duration: Duration(milliseconds: 5000)); //5s
 
@@ -71,17 +77,19 @@ class _DashboardState extends State<Dashboard>
           ..addListener(() {
             setState(() {});
           });
-    luxAnimation =
-        Tween<double>(begin: 0, end: lux).animate(progressController)
-          ..addListener(() {
-            setState(() {});
-          });
+    luxAnimation = Tween<double>(begin: 0, end: lux).animate(progressController)
+      ..addListener(() {
+        setState(() {});
+      });
 
     progressController.forward();
   }
 
   @override
   void initState() {
+    items = new List();
+    _onNoteChangedSubscription =
+        databaseReference.onChildChanged.listen(_onNoteUpdated);
     var initializationSettingsAndroid =
         AndroidInitializationSettings('app_icon');
 
@@ -98,6 +106,7 @@ class _DashboardState extends State<Dashboard>
     // a = true;
 
     myController.addListener(_printLatestValue);
+
     // _timer = Timer.periodic(Duration(seconds: 10), (timer) {
     //     setState(() {});
     // });
@@ -113,19 +122,38 @@ class _DashboardState extends State<Dashboard>
       double soil = snapshot.value['Soilmoisture'] + 0.0;
       double water = snapshot.value['waterlevel'] + 0.0;
       double lux = snapshot.value['lux'] + 0.0;
-      if (water <= 40.0) {
+      if (water <= 15.0) {
         scheduleNotification();
       }
 
       isLoading = true;
-      _DashboardInit(temp, humidity, soil, water,lux);
+      _DashboardInit(temp, humidity, soil, water, lux);
     });
+    //  titleSet.addListener(_printLatestValue);
+    // databaseReference
+    //     .reference()
+    //     .child('notes/setting')
+    //     .once()
+    //     .then((DataSnapshot snap) {
+    //   String id = snap.key;
+    //   String title = snap.value['title'];
+    //   String lightOn = snap.value['lightOn'];
+    //   String lightOff = snap.value['lightOff'];
+    //   Double temperature = snap.value['temperature'];
+    //   Double humidity = snap.value['humidity'];
+    //   Setting(id, title, lightOn, lightOff, humidity, temperature);
+    //   setState(() {
+        
+    //   });
+    // });
+
     super.initState();
   }
 
   _printLatestValue() {
     print("Second text field: ${myController.text}");
   }
+
 
   Future<void> scheduleNotification() async {
     var scheduleNotificationDateTime = DateTime.now();
@@ -192,6 +220,7 @@ class _DashboardState extends State<Dashboard>
                       height: 25,
                     ),
                   ),
+                  
 
                   Container(
                     child: Container(
@@ -401,7 +430,7 @@ class _DashboardState extends State<Dashboard>
                       ),
                     ),
                   ),
-                    Container(
+                  Container(
                     child: Container(
                       width: 350,
                       height: 240,
@@ -581,6 +610,45 @@ class _DashboardState extends State<Dashboard>
                 ),
               ),
       )),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.settings,
+          color: Colors.black,
+        ),
+        backgroundColor: Colors.grey,
+        onPressed: () => _createNewNote(context),
+      ),
+    );
+  }
+
+  void _onNoteUpdated(Event event) {
+    var oldNoteValue =
+        items.singleWhere((setting) => setting.id == event.snapshot.key);
+    setState(() {
+      items[items.indexOf(oldNoteValue)] =
+          new Setting.fromSnapshot(event.snapshot);
+    });
+  }
+
+  void _navigateToNote(BuildContext context, Setting setting) async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => SettingPage(setting)),
+    );
+  }
+
+  void _createNewNote(BuildContext context) async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => SettingPage(Setting(
+                '',
+                '',
+                '',
+                '',
+                null,
+                null,
+              ))),
     );
   }
 

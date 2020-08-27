@@ -21,7 +21,7 @@ class Camera extends StatelessWidget {
       theme: ThemeData.dark(),
       title: "camera",
       home: Homecamera(
-        channel: IOWebSocketChannel.connect('ws://192.168.0.107:2223'),
+        channel: IOWebSocketChannel.connect('ws://192.168.43.87:2225'),
       ),
     );
   }
