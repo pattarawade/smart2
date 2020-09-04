@@ -87,7 +87,6 @@ class _ListViewNoteState extends State<ListViewNote> {
                       valueFontSize: 10.0,
                       onToggle: (value) {
                         setState(() {
-                        
                           switch (_completedController) {
                             case true:
                               {

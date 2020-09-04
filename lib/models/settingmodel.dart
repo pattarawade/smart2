@@ -7,17 +7,17 @@ class Setting {
   String title;
   String lightOn;
   String lightOff;
-  Double humidity;
+  Double soilmoisture;
   Double temperature;
 
-  Setting(this.id, this.title, this.lightOn, this.lightOff, this.humidity,
+  Setting(this.id, this.title, this.lightOn, this.lightOff, this.soilmoisture,
       this.temperature);
   Setting.map(dynamic obj) {
     this.id = obj['id'];
     this.title = obj['title'];
     this.lightOn = obj['lightOn'];
     this.lightOff = obj['lightOff'];
-    this.humidity = obj['humidity'];
+    this.soilmoisture = obj['soilmoisture'];
     this.temperature = obj['temperature'];
   }
 
@@ -25,7 +25,7 @@ class Setting {
   String get _title => title;
   String get _lightOn => lightOn;
   String get _lightOff => lightOff;
-  Double get _humidity => humidity;
+  Double get _soilmoisture => soilmoisture;
   Double get _temperature => temperature;
 
   Setting.fromSnapshot(DataSnapshot snapshot) {
@@ -33,7 +33,7 @@ class Setting {
     title = snapshot.value['title'];
     lightOn = snapshot.value['lightOn'];
     lightOff = snapshot.value['lightOff'];
-    humidity = snapshot.value['humidity'];
+    soilmoisture = snapshot.value['soilmoisture'];
     temperature = snapshot.value['temperature'];
 
     toJson() {
@@ -41,7 +41,7 @@ class Setting {
         "title": title,
         "lightOn": lightOn,
         "lightOff": lightOff,
-        "humidity": humidity,
+        "humidity": soilmoisture,
         "temperature": temperature,
       };
     }

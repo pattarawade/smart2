@@ -15,19 +15,21 @@ class SettingPage extends StatefulWidget {
 final notesReference =
     FirebaseDatabase.instance.reference().child('notes/setting');
 final format = DateFormat("HH:mm");
+// final now = new DateTime.now();
+
 
 class _SettingPageState extends State<SettingPage> {
   TextEditingController _titleController;
   TextEditingController _lightControllerOn;
   TextEditingController _lightControllerOff;
-  TextEditingController _humidity;
+  TextEditingController _soilmoisture;
   TextEditingController _temperature;
   @override
   void initState() {
     _titleController = new TextEditingController();
     _lightControllerOn = new TextEditingController();
     _lightControllerOff = new TextEditingController();
-    _humidity = new TextEditingController();
+    _soilmoisture = new TextEditingController();
     _temperature = new TextEditingController();
     super.initState();
   }
@@ -99,9 +101,9 @@ class _SettingPageState extends State<SettingPage> {
             ligthTime(),
             Padding(padding: new EdgeInsets.all(10.0)),
             TextFormField(
-              controller: _humidity,
+              controller: _soilmoisture,
               decoration: InputDecoration(
-                  border: OutlineInputBorder(), labelText: 'Humidity'),
+                  border: OutlineInputBorder(), labelText: 'Soilmoisture'),
             ),
             Padding(padding: new EdgeInsets.all(10.0)),
             TextFormField(
@@ -118,7 +120,7 @@ class _SettingPageState extends State<SettingPage> {
                   'title': _titleController.text,
                   'lightOn': _lightControllerOn.text,
                   'lightOff': _lightControllerOff.text,
-                  'humidity': _humidity.text,
+                  'soilmoisture': _soilmoisture.text,
                   'temperature': _temperature.text,
                 }).then((_) {
                   Navigator.pop(context);

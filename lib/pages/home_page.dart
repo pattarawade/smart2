@@ -1,6 +1,7 @@
 import 'package:connectfirebase/pages/b.dart';
 import 'package:connectfirebase/pages/listview_setup.dart';
 import 'package:connectfirebase/pages/onoff.dart';
+import 'package:connectfirebase/pages/setting_page.dart';
 import 'package:flutter/material.dart';
 import 'package:connectfirebase/services/authentication.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -21,6 +22,7 @@ import 'package:connectfirebase/pages/camera.dart';
 import 'package:connectfirebase/pages/s_2.dart';
 import 'package:connectfirebase/pages/s3.dart';
 import 'package:connectfirebase/pages/sread.dart';
+import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.auth, this.userId, this.logoutCallback})
@@ -48,6 +50,7 @@ class _HomePageState extends State<HomePage> {
 
    Widget myWidget = Dashboard();
 
+
   // Method
   Widget myDivider() {
     return Divider(
@@ -61,9 +64,31 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    readData();
   
   }
-      
+      void readData() async {
+    print('connected');
+    DatabaseReference baseReference =
+        _database.reference().child('notes').child('setting');
+    await baseReference.once().then((DataSnapshot snap) {
+      Map<dynamic, dynamic> values = snap.value;
+      values.forEach((key, value) {
+        String lightOn = values['lightOn'];
+        String lightOff = values['lightOff'];
+        final now = new DateTime.now();
+        DateTime dateTimenow = new DateTime.now();
+        // ignore: unused_local_variable
+        String formattedDate = DateFormat('HH:mm:ss').format(now);
+        // ignore: unused_local_variable
+        // DateTime dateToday = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day, DateTime.now().hour,DateTime.now().minute,DateTime.now().microsecond) ; 
+        print(formattedDate);
+        print(lightOn);
+        print(lightOff);
+      });
+    });
+  }
+
   signOut() async {
     try {
       await widget.auth.signOut();

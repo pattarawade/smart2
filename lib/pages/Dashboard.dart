@@ -46,6 +46,9 @@ class _DashboardState extends State<Dashboard>
   List<Setting> items;
   StreamSubscription<Event> _onNoteChangedSubscription;
 
+    int off = 0;
+    int on = 1;
+
   _DashboardInit(
       double temp, double humid, double soil, double water, double lux) {
     progressController = AnimationController(
@@ -154,6 +157,17 @@ class _DashboardState extends State<Dashboard>
     print("Second text field: ${myController.text}");
   }
 
+void create_fanpum() {
+    databaseReference.child("data/control_fanpum_update").set({
+      'fan_pum': off //off
+    });
+  }
+
+  void update_fanpum() {
+    databaseReference.child('data/control_fanpum_update').update({
+      'fan_pum': on //on 1
+    });
+  }
 
   Future<void> scheduleNotification() async {
     var scheduleNotificationDateTime = DateTime.now();
@@ -636,7 +650,6 @@ class _DashboardState extends State<Dashboard>
       MaterialPageRoute(builder: (context) => SettingPage(setting)),
     );
   }
-
   void _createNewNote(BuildContext context) async {
     await Navigator.push(
       context,
