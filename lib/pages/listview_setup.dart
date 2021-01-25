@@ -41,8 +41,14 @@ class _ListViewNoteState extends State<ListViewNote> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: ListView.builder(
+      body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: new AssetImage("images/farm.jpg"),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: ListView.builder(
             itemCount: items.length,
             padding: const EdgeInsets.all(15.0),
             itemBuilder: (context, position) {
@@ -110,12 +116,13 @@ class _ListViewNoteState extends State<ListViewNote> {
                 ],
               );
             }),
-      ),
-      floatingActionButton: FloatingActionButton(
+    ),
+    floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         backgroundColor: Colors.teal,
         onPressed: () => _createNewNote(context),
       ),
+    
     );
   }
 
