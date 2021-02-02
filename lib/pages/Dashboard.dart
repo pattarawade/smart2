@@ -91,8 +91,6 @@ class _DashboardState extends State<Dashboard>
   @override
   void initState() {
     items = new List();
-    _onNoteChangedSubscription =
-        databaseReference.onChildChanged.listen(_onNoteUpdated);
     var initializationSettingsAndroid =
         AndroidInitializationSettings('app_icon');
 
@@ -624,44 +622,7 @@ void create_fanpum() {
                 ),
               ),
       )),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(
-          Icons.settings,
-          color: Colors.black,
-        ),
-        backgroundColor: Colors.grey,
-        onPressed: () => _createNewNote(context),
-      ),
-    );
-  }
-
-  void _onNoteUpdated(Event event) {
-    var oldNoteValue =
-        items.singleWhere((setting) => setting.id == event.snapshot.key);
-    setState(() {
-      items[items.indexOf(oldNoteValue)] =
-          new Setting.fromSnapshot(event.snapshot);
-    });
-  }
-
-  void _navigateToNote(BuildContext context, Setting setting) async {
-    await Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => SettingPage(setting)),
-    );
-  }
-  void _createNewNote(BuildContext context) async {
-    await Navigator.push(
-      context,
-      MaterialPageRoute(
-          builder: (context) => SettingPage(Setting(
-                '',
-                '',
-                '',
-                '',
-                null,
-                null,
-              ))),
+      
     );
   }
 

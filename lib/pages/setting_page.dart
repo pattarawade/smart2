@@ -112,6 +112,7 @@ class _SettingPageState extends State<SettingPage> {
                   border: OutlineInputBorder(), labelText: 'Temperature'),
             ),
             Padding(padding: new EdgeInsets.all(10.0)),
+            
             OutlineButton(
               borderSide: BorderSide(width: 1.0, style: BorderStyle.solid),
               child: Text('Update'),
