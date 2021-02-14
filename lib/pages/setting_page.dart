@@ -26,12 +26,12 @@ class _SettingPageState extends State<SettingPage> {
   TextEditingController _temperature;
   @override
   void initState() {
+    super.initState();
     _titleController = new TextEditingController();
     _lightControllerOn = new TextEditingController();
     _lightControllerOff = new TextEditingController();
     _soilmoisture = new TextEditingController();
     _temperature = new TextEditingController();
-    super.initState();
   }
 
   Widget eiei() {

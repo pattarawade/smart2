@@ -323,12 +323,12 @@ Widget menuDashboard() {
         'Setting Control',
         style: TextStyle(fontSize: 18.0),
       ),
-      // onTap: () {
-      //   setState(() {
-      //     myWidget = ListViewNote();
-      //     Navigator.of(context).pop();
-      //   });
-      // },
+       onTap: () {
+         setState(() {
+           myWidget = ListViewNote();
+           Navigator.of(context).pop();
+         });
+       },
     );
   }
   
