@@ -46,8 +46,8 @@ class _DashboardState extends State<Dashboard>
   List<Setting> items;
   StreamSubscription<Event> _onNoteChangedSubscription;
 
-    int off = 0;
-    int on = 1;
+  int off = 0;
+  int on = 1;
 
   _DashboardInit(
       double temp, double humid, double soil, double water, double lux) {
@@ -123,30 +123,15 @@ class _DashboardState extends State<Dashboard>
       double soil = snapshot.value['Soilmoisture'] + 0.0;
       double water = snapshot.value['waterlevel'] + 0.0;
       double lux = snapshot.value['lux'] + 0.0;
-      if (water <= 15.0) {
+
+      if (water <= 40.0) {
         scheduleNotification();
       }
 
       isLoading = true;
       _DashboardInit(temp, humidity, soil, water, lux);
     });
-     titleSet.addListener(_printLatestValue);
-    databaseReference
-        .reference()
-        .child('notes/setting')
-        .once()
-        .then((DataSnapshot snap) {
-      String id = snap.key;
-      String title = snap.value['title'];
-      String lightOn = snap.value['lightOn'];
-      String lightOff = snap.value['lightOff'];
-      Double temperature = snap.value['temperature'];
-      Double humidity = snap.value['humidity'];
-      Setting(id, title, lightOn, lightOff, humidity, temperature);
-      setState(() {
-        
-      });
-    });
+    titleSet.addListener(_printLatestValue);
 
     super.initState();
   }
@@ -155,7 +140,7 @@ class _DashboardState extends State<Dashboard>
     print("Second text field: ${myController.text}");
   }
 
-void create_fanpum() {
+  void create_fanpum() {
     databaseReference.child("data/control_fanpum_update").set({
       'fan_pum': off //off
     });
@@ -232,8 +217,6 @@ void create_fanpum() {
                       height: 25,
                     ),
                   ),
-                  
-
                   Container(
                     child: Container(
                       width: 350,
@@ -494,126 +477,138 @@ void create_fanpum() {
                       ),
                     ),
                   ),
-
-                          CustomPaint(
-                            foregroundPainter:
-                                CircleProgress(tempAnimation.value, true),
-                            child: Container(
-                              width: 200,
-                              height: 200,
-                              child: Center(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text('Temperature',
-                                      style: TextStyle(
-                                        fontSize: 20, fontWeight: FontWeight.bold,),),
-                                    Text(
-                                      '${tempAnimation.value.toInt()}',
-                                      style: TextStyle(
-                                          fontSize: 50, fontWeight: FontWeight.bold),
-                                    ),
-                                    Text('°C',
-                                      style: TextStyle(
-                                          fontSize: 20, fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-
-                          CustomPaint(
-                            foregroundPainter:
-                            CircleProgress(humidityAnimation.value, false),
-                            child: Container(
-                              width: 200,
-                              height: 200,
-                              child: Center(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text('Humidity',
-                                      style: TextStyle(
-                                        fontSize: 20, fontWeight: FontWeight.bold,),),
-                                    Text(
-                                      '${humidityAnimation.value.toInt()}',
-                                      style: TextStyle(
-                                          fontSize: 50, fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      '%',
-                                      style: TextStyle(
-                                          fontSize: 20, fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-
-                          ),
-
-                          CustomPaint(
-                            foregroundPainter:
-                                CircleProgress(soilAnimation.value, true),
-                            child: Container(
-                              width: 200,
-                              height: 200,
-                              child: Center(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text('Soilmoisture',
-                                      style: TextStyle(
-                                        fontSize: 20, fontWeight: FontWeight.bold,),),
-                                    Text(
-                                      '${soilAnimation.value.toInt()}',
-                                      style: TextStyle(
-                                          fontSize: 50, fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      '°C',
-                                      style: TextStyle(
-                                          fontSize: 20, fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-
-                   CustomPaint(
-                            foregroundPainter:
-                                CircleProgress(waterAnimation.value, true),
-                            child: Container(
-                              width: 200,
-                              height: 200,
-                              child: Center(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text('Water Level',
-                                      style: TextStyle(
-                                        fontSize: 20, fontWeight: FontWeight.bold,),),
-                                    Text(
-                                      '${waterAnimation.value.toInt()}',
-                                      style: TextStyle(
-                                          fontSize: 50, fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      '%',
-                                      style: TextStyle(
-                                          fontSize: 20, fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-
+                  // CustomPaint(
+                  //   foregroundPainter:
+                  //       CircleProgress(tempAnimation.value, true),
+                  //   child: Container(
+                  //     width: 200,
+                  //     height: 200,
+                  //     child: Center(
+                  //       child: Column(
+                  //         mainAxisAlignment: MainAxisAlignment.center,
+                  //         children: <Widget>[
+                  //           Text(
+                  //             'Temperature',
+                  //             style: TextStyle(
+                  //               fontSize: 20,
+                  //               fontWeight: FontWeight.bold,
+                  //             ),
+                  //           ),
+                  //           Text(
+                  //             '${tempAnimation.value.toInt()}',
+                  //             style: TextStyle(
+                  //                 fontSize: 50, fontWeight: FontWeight.bold),
+                  //           ),
+                  //           Text(
+                  //             '°C',
+                  //             style: TextStyle(
+                  //                 fontSize: 20, fontWeight: FontWeight.bold),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                  // CustomPaint(
+                  //   foregroundPainter:
+                  //       CircleProgress(humidityAnimation.value, false),
+                  //   child: Container(
+                  //     width: 200,
+                  //     height: 200,
+                  //     child: Center(
+                  //       child: Column(
+                  //         mainAxisAlignment: MainAxisAlignment.center,
+                  //         children: <Widget>[
+                  //           Text(
+                  //             'Humidity',
+                  //             style: TextStyle(
+                  //               fontSize: 20,
+                  //               fontWeight: FontWeight.bold,
+                  //             ),
+                  //           ),
+                  //           Text(
+                  //             '${humidityAnimation.value.toInt()}',
+                  //             style: TextStyle(
+                  //                 fontSize: 50, fontWeight: FontWeight.bold),
+                  //           ),
+                  //           Text(
+                  //             '%',
+                  //             style: TextStyle(
+                  //                 fontSize: 20, fontWeight: FontWeight.bold),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                  // CustomPaint(
+                  //   foregroundPainter:
+                  //       CircleProgress(soilAnimation.value, true),
+                  //   child: Container(
+                  //     width: 200,
+                  //     height: 200,
+                  //     child: Center(
+                  //       child: Column(
+                  //         mainAxisAlignment: MainAxisAlignment.center,
+                  //         children: <Widget>[
+                  //           Text(
+                  //             'Soilmoisture',
+                  //             style: TextStyle(
+                  //               fontSize: 20,
+                  //               fontWeight: FontWeight.bold,
+                  //             ),
+                  //           ),
+                  //           Text(
+                  //             '${soilAnimation.value.toInt()}',
+                  //             style: TextStyle(
+                  //                 fontSize: 50, fontWeight: FontWeight.bold),
+                  //           ),
+                  //           Text(
+                  //             '°C',
+                  //             style: TextStyle(
+                  //                 fontSize: 20, fontWeight: FontWeight.bold),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                  // CustomPaint(
+                  //   foregroundPainter:
+                  //       CircleProgress(waterAnimation.value, true),
+                  //   child: Container(
+                  //     width: 200,
+                  //     height: 200,
+                  //     child: Center(
+                  //       child: Column(
+                  //         mainAxisAlignment: MainAxisAlignment.center,
+                  //         children: <Widget>[
+                  //           Text(
+                  //             'Water Level',
+                  //             style: TextStyle(
+                  //               fontSize: 20,
+                  //               fontWeight: FontWeight.bold,
+                  //             ),
+                  //           ),
+                  //           Text(
+                  //             '${waterAnimation.value.toInt()}',
+                  //             style: TextStyle(
+                  //                 fontSize: 50, fontWeight: FontWeight.bold),
+                  //           ),
+                  //           Text(
+                  //             '%',
+                  //             style: TextStyle(
+                  //                 fontSize: 20, fontWeight: FontWeight.bold),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   Center(),
                 ],
               )
+
             : Text(
                 'Loading...',
                 textAlign: TextAlign.center,
@@ -621,8 +616,8 @@ void create_fanpum() {
                   fontSize: 30,
                 ),
               ),
+
       )),
-      
     );
   }
 
