@@ -191,7 +191,7 @@ class _HomePageState extends State<HomePage> {
         color: Colors.pink[500],
       ),
       title: Text(
-        'Images View',
+        'Images Views',
         style: TextStyle(fontSize: 18.0),
       ),
       onTap: () {
