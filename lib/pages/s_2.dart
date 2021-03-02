@@ -58,7 +58,7 @@ class _TestpageState extends State<S2> {
     _todoList = new List();
     _todoQuery = _database
         .reference()
-        .child("item")
+        .child("readdata")
         .orderByChild("userId")
         .equalTo(widget.userId);
     _onTodoAddedSubscription = _todoQuery.onChildAdded.listen(onEntryAdded);
@@ -123,7 +123,7 @@ class _TestpageState extends State<S2> {
   void readData() async {
     //  print('readData Work!!!');
       DatabaseReference databaseReference = 
-      _database.reference().child('item'); 
+      _database.reference().child('readdata'); 
       await databaseReference.once().then((DataSnapshot dataSnapshop) {
       //print('Data ==> ${dataSnapshop.value}');
 
@@ -284,7 +284,7 @@ class _TestpageState extends State<S2> {
 
   Widget showTodoList() {
       DatabaseReference databaseReference = 
-      _database.reference().child('item'); 
+      _database.reference().child('readdata'); 
       
 
     if (_todoList.length > 0) {
@@ -319,7 +319,7 @@ class _TestpageState extends State<S2> {
                         ? Icon(Icons.power_settings_new ,color: Colors.green,size: 30.0,)
                         : Icon(Icons.power_settings_new, color: Colors.red, size: 30.0),
                     onPressed: () {
-                       databaseReference.child('item').once().then((DataSnapshot dataSnapshop) {
+                       databaseReference.child('readdata').once().then((DataSnapshot dataSnapshop) {
                           Map<dynamic, dynamic> s = dataSnapshop.value;
                           s. forEach((key,s){
                             print(s['completed']);

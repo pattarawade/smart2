@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class CircleProgress extends CustomPainter {
@@ -35,18 +34,6 @@ class CircleProgress extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
 
-    Paint soilArc = Paint()
-      ..strokeWidth = 14
-      ..color = Colors.red
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round;
-
-    Paint waterArc = Paint()
-      ..strokeWidth = 14
-      ..color = Colors.blue[100]
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round;
-
     Offset center = Offset(size.width / 2, size.height / 2);
     double radius = min(size.width / 2, size.height / 2) - 14;
     canvas.drawCircle(center, radius, outerCircle);
@@ -54,6 +41,6 @@ class CircleProgress extends CustomPainter {
     double angle = 2 * pi * (value / maximumValue);
 
     canvas.drawArc(Rect.fromCircle(center: center, radius: radius), -pi / 2,
-        angle, false, isTemp ? tempArc : humidityArc );
+        angle, false, isTemp ? tempArc : humidityArc);
   }
 }

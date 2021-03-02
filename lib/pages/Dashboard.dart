@@ -214,401 +214,302 @@ class _DashboardState extends State<Dashboard>
                   Container(
                     child: Container(
                       width: 350,
-                      height: 25,
+                      height: 15,
                     ),
                   ),
-                  Container(
-                    child: Container(
-                      width: 350,
-                      height: 240,
-                      child: Card(
-                        color: Colors.teal[50],
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: new Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            CustomPaint(
-                              foregroundPainter:
-                                  CircleProgress(tempAnimation.value, true),
-                              child: Container(
-                                width: 200,
-                                height: 200,
-                                child: Center(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Text(
-                                        'Temperature',
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        child: Container(
+                          width: 180,
+                          height: 230,
+                          child: Card(
+                            color: Colors.teal[100],
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            child: new Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                CustomPaint(
+                                  foregroundPainter:
+                                      CircleProgress(tempAnimation.value, true),
+                                  child: Container(
+                                    width: 200,
+                                    height: 200,
+                                    child: Center(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          Text(
+                                            'Temperature',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          Text(
+                                            '${tempAnimation.value.toDouble().toStringAsFixed(1)}',
+                                            style: TextStyle(
+                                                fontSize: 40,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Text(
+                                            '°C',
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ],
                                       ),
-                                      Text(
-                                        '${tempAnimation.value.toDouble().toStringAsFixed(1)}',
-                                        style: TextStyle(
-                                            fontSize: 50,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        '°C',
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
+                                    ),
                                   ),
                                 ),
-                              ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                  Container(
-                    child: Container(
-                      width: 350,
-                      height: 240,
-                      child: Card(
-                        color: Colors.teal[100],
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: new Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            CustomPaint(
-                              foregroundPainter: CircleProgress(
-                                  humidityAnimation.value, false),
-                              child: Container(
-                                width: 200,
-                                height: 200,
-                                child: Center(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Text(
-                                        'Humidity',
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                      Container(
+                        child: Container(
+                          width: 180,
+                          height: 230,
+                          child: Card(
+                            color: Colors.teal[200],
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            child: new Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                CustomPaint(
+                                  foregroundPainter: CircleProgress(
+                                      humidityAnimation.value, false),
+                                  child: Container(
+                                    width: 200,
+                                    height: 200,
+                                    child: Center(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          Text(
+                                            'Humidity',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          Text(
+                                            '${humidityAnimation.value.toDouble().toStringAsFixed(1)}',
+                                            style: TextStyle(
+                                                fontSize: 40,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Text(
+                                            '%',
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ],
                                       ),
-                                      Text(
-                                        '${humidityAnimation.value.toDouble().toStringAsFixed(1)}',
-                                        style: TextStyle(
-                                            fontSize: 50,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        '%',
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
+                                    ),
                                   ),
                                 ),
-                              ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                  Container(
-                    child: Container(
-                      width: 350,
-                      height: 240,
-                      child: Card(
-                        color: Colors.teal[200],
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: new Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            CustomPaint(
-                              foregroundPainter:
-                                  CircleProgress(soilAnimation.value, true),
-                              child: Container(
-                                width: 200,
-                                height: 200,
-                                child: Center(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Text(
-                                        'Soilmoisture',
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        child: Container(
+                          width: 180,
+                          height: 230,
+                          child: Card(
+                            color: Colors.teal[200],
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            child: new Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                CustomPaint(
+                                  foregroundPainter:
+                                      CircleProgress(soilAnimation.value, true),
+                                  child: Container(
+                                    width: 200,
+                                    height: 200,
+                                    child: Center(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          Text(
+                                            'Soilmoisture',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          Text(
+                                            '${soilAnimation.value.toDouble().toStringAsFixed(1)}',
+                                            style: TextStyle(
+                                                fontSize: 40,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Text(
+                                            '°C',
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ],
                                       ),
-                                      Text(
-                                        '${soilAnimation.value.toDouble().toStringAsFixed(1)}',
-                                        style: TextStyle(
-                                            fontSize: 50,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        '°C',
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
+                                    ),
                                   ),
                                 ),
-                              ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                  Container(
-                    child: Container(
-                      width: 350,
-                      height: 240,
-                      child: Card(
-                        color: Colors.teal[300],
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: new Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            CustomPaint(
-                              foregroundPainter:
-                                  CircleProgress(waterAnimation.value, true),
-                              child: Container(
-                                width: 200,
-                                height: 200,
-                                child: Center(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Text(
-                                        'Water Level',
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                      Container(
+                        child: Container(
+                          width: 180,
+                          height: 230,
+                          child: Card(
+                            color: Colors.teal[100],
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            child: new Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                CustomPaint(
+                                  foregroundPainter: CircleProgress(
+                                      humidityAnimation.value, false),
+                                  child: Container(
+                                    width: 200,
+                                    height: 200,
+                                    child: Center(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          Text(
+                                            'Light value',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          Text(
+                                            '${luxAnimation.value.toInt()}',
+                                            style: TextStyle(
+                                                fontSize: 40,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Text(
+                                            'lux',
+                                            style: TextStyle(
+                                                fontSize:18,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ],
                                       ),
-                                      Text(
-                                        '${waterAnimation.value.toInt()}',
-                                        style: TextStyle(
-                                            fontSize: 50,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        '%',
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
+                                    ),
                                   ),
                                 ),
-                              ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                  Container(
-                    child: Container(
-                      width: 350,
-                      height: 240,
-                      child: Card(
-                        color: Colors.teal[100],
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: new Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            CustomPaint(
-                              foregroundPainter: CircleProgress(
-                                  humidityAnimation.value, false),
-                              child: Container(
-                                width: 200,
-                                height: 200,
-                                child: Center(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Text(
-                                        'Light value',
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                  Row(
+                     mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                    //   Container(
+                    // child: Container(
+                    //   width: 15,
+                    //   height: 230,
+                    // ),
+                 // ),
+                 Container(
+                        child: Container(
+                          width: 360,
+                          height: 230,
+                          child: Card(
+                            color: Colors.teal[100],
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            child: new Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                CustomPaint(
+                                  foregroundPainter: CircleProgress(
+                                      waterAnimation.value, false),
+                                  child: Container(
+                                    width: 200,
+                                    height: 200,
+                                    child: Center(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          Text(
+                                            'Water Level',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          Text(
+                                            '${waterAnimation.value.toInt()}',
+                                            style: TextStyle(
+                                                fontSize: 40,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Text(
+                                            '%',
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ],
                                       ),
-                                      Text(
-                                        '${luxAnimation.value.toInt()}',
-                                        style: TextStyle(
-                                            fontSize: 50,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        'lux',
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
+                                    ),
                                   ),
                                 ),
-                              ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
                       ),
-                    ),
+                      
+                    ],
                   ),
-                  // CustomPaint(
-                  //   foregroundPainter:
-                  //       CircleProgress(tempAnimation.value, true),
-                  //   child: Container(
-                  //     width: 200,
-                  //     height: 200,
-                  //     child: Center(
-                  //       child: Column(
-                  //         mainAxisAlignment: MainAxisAlignment.center,
-                  //         children: <Widget>[
-                  //           Text(
-                  //             'Temperature',
-                  //             style: TextStyle(
-                  //               fontSize: 20,
-                  //               fontWeight: FontWeight.bold,
-                  //             ),
-                  //           ),
-                  //           Text(
-                  //             '${tempAnimation.value.toInt()}',
-                  //             style: TextStyle(
-                  //                 fontSize: 50, fontWeight: FontWeight.bold),
-                  //           ),
-                  //           Text(
-                  //             '°C',
-                  //             style: TextStyle(
-                  //                 fontSize: 20, fontWeight: FontWeight.bold),
-                  //           ),
-                  //         ],
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                  // CustomPaint(
-                  //   foregroundPainter:
-                  //       CircleProgress(humidityAnimation.value, false),
-                  //   child: Container(
-                  //     width: 200,
-                  //     height: 200,
-                  //     child: Center(
-                  //       child: Column(
-                  //         mainAxisAlignment: MainAxisAlignment.center,
-                  //         children: <Widget>[
-                  //           Text(
-                  //             'Humidity',
-                  //             style: TextStyle(
-                  //               fontSize: 20,
-                  //               fontWeight: FontWeight.bold,
-                  //             ),
-                  //           ),
-                  //           Text(
-                  //             '${humidityAnimation.value.toInt()}',
-                  //             style: TextStyle(
-                  //                 fontSize: 50, fontWeight: FontWeight.bold),
-                  //           ),
-                  //           Text(
-                  //             '%',
-                  //             style: TextStyle(
-                  //                 fontSize: 20, fontWeight: FontWeight.bold),
-                  //           ),
-                  //         ],
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                  // CustomPaint(
-                  //   foregroundPainter:
-                  //       CircleProgress(soilAnimation.value, true),
-                  //   child: Container(
-                  //     width: 200,
-                  //     height: 200,
-                  //     child: Center(
-                  //       child: Column(
-                  //         mainAxisAlignment: MainAxisAlignment.center,
-                  //         children: <Widget>[
-                  //           Text(
-                  //             'Soilmoisture',
-                  //             style: TextStyle(
-                  //               fontSize: 20,
-                  //               fontWeight: FontWeight.bold,
-                  //             ),
-                  //           ),
-                  //           Text(
-                  //             '${soilAnimation.value.toInt()}',
-                  //             style: TextStyle(
-                  //                 fontSize: 50, fontWeight: FontWeight.bold),
-                  //           ),
-                  //           Text(
-                  //             '°C',
-                  //             style: TextStyle(
-                  //                 fontSize: 20, fontWeight: FontWeight.bold),
-                  //           ),
-                  //         ],
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                  // CustomPaint(
-                  //   foregroundPainter:
-                  //       CircleProgress(waterAnimation.value, true),
-                  //   child: Container(
-                  //     width: 200,
-                  //     height: 200,
-                  //     child: Center(
-                  //       child: Column(
-                  //         mainAxisAlignment: MainAxisAlignment.center,
-                  //         children: <Widget>[
-                  //           Text(
-                  //             'Water Level',
-                  //             style: TextStyle(
-                  //               fontSize: 20,
-                  //               fontWeight: FontWeight.bold,
-                  //             ),
-                  //           ),
-                  //           Text(
-                  //             '${waterAnimation.value.toInt()}',
-                  //             style: TextStyle(
-                  //                 fontSize: 50, fontWeight: FontWeight.bold),
-                  //           ),
-                  //           Text(
-                  //             '%',
-                  //             style: TextStyle(
-                  //                 fontSize: 20, fontWeight: FontWeight.bold),
-                  //           ),
-                  //         ],
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
                   Center(),
                 ],
               )
-
             : Text(
                 'Loading...',
                 textAlign: TextAlign.center,
@@ -616,7 +517,6 @@ class _DashboardState extends State<Dashboard>
                   fontSize: 30,
                 ),
               ),
-
       )),
     );
   }
